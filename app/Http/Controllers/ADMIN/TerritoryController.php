@@ -22,6 +22,26 @@ class TerritoryController extends Controller
             
         }
     }
+    public function provinceDelete($id){
+        $data = Province::find($id);
+        if($data->delete())
+            return redirect(url('territory/province'))->with('success','Success delete Province');
+        return redirect(url('territory/province'))->with('failed','Failed delete Province');
+    }
+    public function provinceEdit($id)
+    {
+        $data = Province::find($id);
+        return view('territory.province-edit', compact('data'));
+    }
+    public function provinceEditExecute(Request $request){
+        $data = Province::find($request->id);
+        $data->name = $request->name;
+        if($data->save())
+            return redirect(url('territory/province'))->with('success','successfully changed data province' .$data['name']);
+        return redirect(url('territory/'.$request->id.'/province-edit'))->with('failed','failed to change data province' .$data['name']);
+    }
+
+    // CITY
     public function city(Request $request){
         $province = Province::where('deleted_at',null)->get();
         $city = City::where('deleted_at',null)->get();
@@ -34,21 +54,22 @@ class TerritoryController extends Controller
                 return redirect(route('city'))->with('success', 'Success stored new city data');
         }
     }
-    public function provinceDelete($id){
-        $data = Province::find($id);
-        if($data->delete())
-            return redirect(url('territory/province'))->with('success','Success delete Province');
-        return redirect(url('territory/province'))->with('failed','Failed delete Province');
-    }
-    public function pedit($id){
-        return ('hello');
-        
-
-    }
     public function cityDelete(Request $request){
         $data = City::find($request->id);
         if($data->delete())
             return redirect(url('territory/city'))->with('success','Success delete Province');
         return redirect(url('territory/city'))->with('failed','Failed delete Province');
+    }
+    public function cityEdit($id){
+        $data = City::find($id);
+        return view('territory.city-edit', compact('data'));
+    }
+    public function cityEditExecute(Request $request){
+
+        $data = City::find($request->id);
+        $data->name = $request->name;
+        if($data->save())
+            return redirect(url('territory/city'))->with('success','successfully changed data city ' .$data['name']);
+        return redirect(url('territory/'.$request->id.'/city-edit'))->with('failed','failed changed data province ' .$data['name']);
     }
 }

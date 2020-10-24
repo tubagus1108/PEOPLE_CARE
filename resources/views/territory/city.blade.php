@@ -59,6 +59,7 @@
                                         <th width="50">{{$loop->iteration}}</th> 
                                         <th>{{$item['name']}}</th>
                                         <th>
+                                            <a href="{{route('cityEdit',$item->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                             <button onclick="confirm_me('This action cannot be undo !', '{{url('territory/city-delete/'.$item['id'])}}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </th>
                                     </tr>                                

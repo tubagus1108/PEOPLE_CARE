@@ -27,10 +27,14 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('province', [TerritoryController::class, 'province'])->name('province');
         Route::post('province', [TerritoryController::class, 'province']);
         Route::get('province-delete/{id}', [TerritoryController::class, 'provinceDelete']);
-        Route::get('province-edit', [TerritoryController::class, 'province']);
+        Route::get('/{id}/province-edit', [TerritoryController::class, 'provinceEdit'])->name('provinceEdit');
+        Route::post('province-edit-execute', [TerritoryController::class, 'provinceEditExecute']);
+        
         // CITY
         Route::get('city', [TerritoryController::class, 'city'])->name('city');
         Route::post('city', [TerritoryController::class, 'city']);
         Route::get('city-delete/{id}', [TerritoryController::class, 'cityDelete']);
+        Route::get('/{id}/city-edit', [TerritoryController::class, 'cityEdit'])->name('cityEdit');
+        Route::post('city-edit-execute', [TerritoryController::class, 'cityEditExecute']);
     });
 });

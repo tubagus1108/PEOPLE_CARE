@@ -48,8 +48,8 @@
                                     <th width="50">{{$loop->iteration}}</th> 
                                     <th>{{$item['name']}}</th>
                                     <th>                                
+                                        <a href="{{route('provinceEdit',$item->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                         <button onclick="confirm_me('This action cannot be undo !', '{{url('territory/province-delete/'.$item['id'])}}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                        <a href="/territory/province-edit">tes</a>
                                     </th>
                                 </tr>                              
                                 @endforeach
