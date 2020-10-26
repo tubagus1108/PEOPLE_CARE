@@ -1,4 +1,5 @@
 @extends('layouts.light.master')
+@section('title', 'Province')
 @section('content')
     @if(session('success'))
     <div class="row">

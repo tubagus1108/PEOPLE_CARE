@@ -70,8 +70,9 @@ class TerritoryController extends Controller
         return redirect(url('territory/city'))->with('failed','Failed delete Province');
     }
     public function cityEdit($id){
+        $province = Province::where('deleted_at',null)->get();
         $data = City::find($id);
-        return view('territory.city-edit', compact('data'));
+        return view('territory.city-edit', compact('data', 'province'));
     }
     public function cityEditExecute(Request $request){
         $data = $request->validate([

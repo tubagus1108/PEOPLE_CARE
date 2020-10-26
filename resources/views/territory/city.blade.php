@@ -1,4 +1,5 @@
 @extends('layouts.light.master')
+@section('title', 'City')
 @section('content')
     @if(session('success'))
         <div class="row">
@@ -18,7 +19,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-4">
                     <div class="card">
-                        <form action="" method="POST">@csrf
+                        <form action="{{url('territory/city')}}" method="POST">@csrf
                             <div class="card-body">
                                 <h5>Add City</h5>
                                 <hr>
@@ -52,7 +53,7 @@
                                 <thead>
                                     <tr>
                                         <th width="50">Id</th>
-                                        <th>Name</th>
+                                        <th>Name City</th>
                                         <th width="100px">Action</th>
                                     </tr>
                                 </thead>
