@@ -29,6 +29,7 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('province-delete/{id}', [TerritoryController::class, 'provinceDelete']);
         Route::get('/{id}/province-edit', [TerritoryController::class, 'provinceEdit'])->name('provinceEdit');
         Route::post('province-edit-execute', [TerritoryController::class, 'provinceEditExecute']);
+            
         
         // CITY
         Route::get('city', [TerritoryController::class, 'city'])->name('city');

@@ -7,19 +7,14 @@
                 <h5>Edit new Province</h5> <hr>
                 <input type="hidden" name="id" value="{{$data['id']}}">
                 <div class="form-group">
-                    {{-- <label for="">Province Name : </label>
-                    <input type="text" name="name" required class="form-control" value="{{$data['province_id']}}" readonly> --}}
-                    <select name="province_id" id="" class="form-control">
-                        <option value="">Choose Province</option>
-                        {{-- @foreach ($province as $item)
-                            <option value="{{$item['id']}}">{{$item['name']}}</option>
-                        @endforeach --}}
-                        
-                    </select>
+                    
                 </div>
                 <div class="form-group">
                     <label for="">City Name : </label>
                     <input type="text" name="name" required class="form-control" value="{{$data['name']}}">
+                    @if ($errors->has('name'))
+                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-info btn-block">Process Update</button>

@@ -34,6 +34,9 @@
                                 <div class="form-group">
                                     <label for="">City Name : </label>
                                     <input type="text" name="name" required class="form-control" >
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-info btn-block">Process</button>

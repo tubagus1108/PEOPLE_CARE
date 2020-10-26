@@ -23,7 +23,10 @@
                                 <h5>Add new Province</h5> <hr>
                                 <div class="form-group">
                                     <label for="">Province Name : </label>
-                                    <input type="text" name="name" required class="form-control">
+                                    <input type="text" name="name"class="form-control">
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-info btn-block">Process</button>
@@ -47,7 +50,7 @@
                                 <tr>
                                     <th width="50">{{$loop->iteration}}</th> 
                                     <th>{{$item['name']}}</th>
-                                    <th>                                
+                                    <th>                               
                                         <a href="{{route('provinceEdit',$item->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                         <button onclick="confirm_me('This action cannot be undo !', '{{url('territory/province-delete/'.$item['id'])}}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </th>
