@@ -18,7 +18,7 @@ class CreateProvinceTable extends Migration
                 $table->id();
                 $table->string('name');
                 $table->timestamps();
-                $table->date('deleted_at');
+                $table->softDeletes();
             });
         }
     }

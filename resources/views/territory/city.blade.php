@@ -1,21 +1,22 @@
 @extends('layouts.light.master')
 @section('title', 'City')
 @section('content')
-    @if(session('success'))
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-success">
-                    {{session('success')}}
-                </div>
-            </div>
-        </div>
-    @endif
     <div class="card">
         <div class="card-header">
             <h4>City Data</h4>
             <span>You can manage city date right here !</span>
         </div>
         <div class="card-body">
+            @if(session('success'))
+            <div class="row pb-4">
+                <div class="col-12">
+                    <div class="alert alert-success outline alert-dismissible fade show" role="alert"><i data-feather="thumbs-up"></i>
+                        <p>{{session('success')}}</p>
+                        <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-md-12 col-lg-4">
                     <div class="card">
@@ -47,42 +48,75 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-8">
-                    <table class="table table-bordered" id="users-table">
-                        <form action="{{url('territory/city')}}" method="POST">@csrf
-                            <table class="table table-bordered data-table" id="data-city">
-                                <thead>
-                                    <tr>
-                                        <th width="50">Id</th>
-                                        <th>Name City</th>
-                                        <th width="100px">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($city as $item)
-                                    <tr>
-                                        <th width="50">{{$loop->iteration}}</th> 
-                                        <th>{{$item['name']}}</th>
-                                        <th>
-                                            <a href="{{route('cityEdit',$item->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                            <button onclick="confirm_me('This action cannot be undo !', '{{url('territory/city-delete/'.$item['id'])}}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                        </th>
-                                    </tr>                                
-                                    @endforeach
-                                    
-                                </tbody>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </form>    
+                    <table class="table table-bordered data-table" id="data-city">
+                        <thead>
+                            <tr class="text-center">
+                                <th width="50">#</th>
+                                <th>Name</th>
+                                <th width="100px">Created At</th>
+                                <th width="100px">Action</th>
+                            </tr>
+                        </thead>
                     </table>
                 </div>       
+            </div>
+        </div>
+
+        {{-- Modal Edit City --}}
+        <div class="modal fade" id="editCity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content" id="box_edit_city">
+            </div>
             </div>
         </div>
 @endsection
 @section('script')
     <script>
-        $(document).ready(function(){
-            $('#data-city').DataTable();
-        })
+        // Datatable
+        $(function(){
+            $('#data-city').DataTable({
+                ajax: '{{route('city-datatable')}}',
+                columns: [
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                    { data: 'name', name: 'name'},
+                    { data: 'created_at', name: 'created_at'},
+                    { data: 'action', name: 'action'},
+                ],
+                language: {
+                searchPlaceholder: 'DKI Jakart..',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+                destroy: true
+                },  
+
+                columnDefs:[
+                    {
+                        "targets" : [0,2,3],
+                        "className": "text-center"
+                    },
+                ],              
+                
+                dom: 'Bfrtip',  
+                buttons: [
+                    {extend:'copy', className: 'bg-info text-white rounded-pill ml-2 border border-white'},
+                    {extend:'excel', className: 'bg-success text-white rounded-pill border border-white'},
+                    {extend:'pdf', className: 'bg-danger text-white rounded-pill border border-white'},
+                    {extend:'print', className: 'bg-warning text-white rounded-pill border border-white'},
+                ],
+                "bDestroy": true,
+                "processing": true,
+                "serverSide": true, 
+            });
+        });
+
+        // Ajax Edit Province Data
+        editCity = (link) => {
+            $.ajax({
+                url: link,
+                success: function(response){
+                    $('#box_edit_city').html(response)
+                }
+            })
+        }
     </script>
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCityTable extends Migration
+class CreateRestTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateCityTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('city')){
-            Schema::create('city', function (Blueprint $table) {
+        if(!Schema::hasTable('rest')){
+            Schema::create('rest', function (Blueprint $table) {
                 $table->id();
-                $table->integer('province_id');
                 $table->string('name');
+                $table->string('address');
+                $table->string('latitude')->nullable();
+                $table->string('longtitude')->nullable();
+                $table->integer('type'); // 1. Hospital 2. Firefighter
                 $table->timestamps();
                 $table->softDeletes();
             });
@@ -31,6 +34,6 @@ class CreateCityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('city');
+        Schema::dropIfExists('rest');
     }
 }

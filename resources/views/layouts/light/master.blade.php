@@ -52,38 +52,6 @@
         @include('layouts.light.sidebar')        
         <!-- Page Sidebar Ends-->
         <div class="page-body">
-          <div class="container-fluid">
-            <div class="page-header">
-              <div class="row">
-                <div class="col-lg-6">
-                  @yield('breadcrumb-title')                  
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('my-dashboard')}}"><i data-feather="home"></i></a></li>
-                    @yield('breadcrumb-items')                    
-                  </ol>
-                </div>
-                <div class="col-lg-6">
-                  <!-- Bookmark Start-->
-                  {{-- <div class="bookmark pull-right">
-                    <ul>
-                      <li><a href="#" data-container="body" data-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
-                      <li><a href="#" data-container="body" data-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
-                      <li><a href="#" data-container="body" data-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
-                      <li>
-                        <a href="#"><i class="bookmark-search" data-feather="star"></i></a>
-                        <form class="form-inline search-form">
-                          <div class="form-group form-control-search">
-                            <input type="text" placeholder="Search..">
-                          </div>
-                        </form>
-                      </li>
-                    </ul>
-                  </div> --}}
-                  <!-- Bookmark Ends-->
-                </div>
-              </div>
-            </div>
-          </div>
           <!-- Container-fluid starts-->
           @yield('content')          
           <!-- Container-fluid Ends-->

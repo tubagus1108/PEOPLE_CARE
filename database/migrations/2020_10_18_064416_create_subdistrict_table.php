@@ -21,6 +21,7 @@ class CreateSubdistrictTable extends Migration
                 $table->string('longtitude');
                 $table->string('latitude');
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
     }

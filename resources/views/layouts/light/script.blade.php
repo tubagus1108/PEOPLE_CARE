@@ -71,10 +71,12 @@
                 icon: "success",
                 });
                 document.location.href = link;
-            } else {
-                swal("Your imaginary file is safe!");
             }
             });
+
+        setTimeout(function(){
+            $('#flash').css({'display':'none'})
+        }, 2000)
     }
 </script>
 
