@@ -26,6 +26,7 @@ class TerritoryController extends Controller
                 return redirect(route('province'))->with('success', 'Success stored new province data');
             return redirect(route('province'))->with('failed', 'failed stored new province data');
         }
+        
     }
     public function provinceDatatable(){
         $data = Province::where('deleted_at',null)->get();

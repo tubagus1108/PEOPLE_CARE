@@ -16,15 +16,15 @@
               </a>
             </li>
 
-            {{-- Hospitals --}}
+            {{-- Hospital --}}
             <li class="dropdown">
-              <a href="{{route('hospitals')}}" class="nav-link menu-title {{request()->route()->getPrefix() == 'hospitals' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-building" style="font-size:20px;"></i></button><span>Hospitals</span>     
+              <a href="{{route('hospital')}}" class="nav-link menu-title {{request()->route()->getPrefix() == 'hospital' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-building" style="font-size:20px;"></i></button><span>Hospital</span>     
               </a>
             </li>
 
             {{-- Firefighters --}}
             <li class="dropdown">
-              <a href="{{route('hospitals')}}" class="nav-link menu-title {{request()->route()->getPrefix() == 'hospitals' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fire-extinguisher" style="font-size:20px;"></i></button><span>Firefighter</span>     
+              <a href="{{route('firefighters')}}" class="nav-link menu-title {{request()->route()->getPrefix() == 'firefighters' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-fire-extinguisher" style="font-size:20px;"></i></button><span>Firefighter</span>     
               </a>
             </li>
 

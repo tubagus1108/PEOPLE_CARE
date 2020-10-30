@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ADMIN\DashboardController;
 use App\Http\Controllers\ADMIN\TerritoryController;
+use App\Http\Controllers\ADMIN\RestControlller;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,22 @@ Route::namespace('ADMIN')->group(function(){
     });
 
     // Hospitals Prefix
-    Route::prefix('hospitals')->group(function(){
-        Route::get('hospital-data', [RestControlller::class, 'hospitalData'])->name('hospitals');
+    Route::prefix('hospital')->group(function(){
+        Route::get('hospital-data', [RestControlller::class, 'hospitalData'])->name('hospital');
+        Route::get('hospital-datatable', [RestControlller::class, 'hospitalDatatable'])->name('hospital-datatable');
+        Route::post('hospital-data', [RestControlller::class, 'hospitalData']);
+        Route::get('hospital-delete/{id}', [RestControlller::class, 'hospitalDelete']);
+        Route::get('/{id}/hospital-edit', [RestControlller::class, 'hospitalEdit'])->name('hospitalEdit');
+        Route::post('hospital-edit-execute', [RestControlller::class, 'hospitalEditExecute']);
+    });
+    // Firefighters Prefix
+    Route::prefix('firefighters')->group(function(){
+        Route::get('firefighters-data', [RestControlller::class, 'firefightersData'])->name('firefighters');
+        Route::get('firefighters-datatable', [RestControlller::class, 'firefightersDatatable'])->name('firefighters-datatable');
+        Route::post('firefighters-data', [RestControlller::class, 'firefightersData']);
+        Route::get('firefighters-delete/{id}', [RestControlller::class, 'firefightersDelete']);
+        Route::get('/{id}/firefighters-edit', [RestControlller::class, 'firefightersEdit'])->name('firefightersEdit');
+        Route::post('firefighters-edit-execute', [RestControlller::class, 'firefightersEditExecute']);
     });
 
     // Territory Prefix
