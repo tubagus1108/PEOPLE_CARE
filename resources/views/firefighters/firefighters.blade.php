@@ -65,8 +65,8 @@
                             <th width="50">#</th>
                             <th>Name</th>
                             <th>Address</th>
-                            <th width="100px">Created At</th>
-                            <th width="100px">Action</th>
+                            <th width="50px">Created At</th>
+                            <th width="130px">Action</th>
                         </tr>
                     </thead>
                 </table>   
@@ -74,7 +74,13 @@
         </div>
     </div>
 </div>
-
+{{-- Modal Show firefighters --}}
+<div class="modal fade" id="showFirefighters" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="box_show_firefighters">
+    </div>
+    </div>
+</div>
 {{-- Modal Edit firefighters --}}
 <div class="modal fade" id="editFirefighters" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -129,6 +135,15 @@
                 url: link,
                 success: function(response){
                     $('#box_edit_firefighters').html(response)
+                }
+            })
+        }
+         // Ajax show firefighters Data
+         showFirefighters = (link) => {
+            $.ajax({
+                url: link,
+                success: function(response){
+                    $('#box_show_firefighters').html(response)
                 }
             })
         }

@@ -40,6 +40,7 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('firefighters-delete/{id}', [RestControlller::class, 'firefightersDelete']);
         Route::get('/{id}/firefighters-edit', [RestControlller::class, 'firefightersEdit'])->name('firefightersEdit');
         Route::post('firefighters-edit-execute', [RestControlller::class, 'firefightersEditExecute']);
+        Route::get('/{id}/firefighters-show', [RestControlller::class, 'firefightersShow'])->name('firefightersShow');
     });
 
     // Territory Prefix

@@ -1,5 +1,5 @@
 <div class="modal-header" >
-    <h5 class="modal-title" id="exampleModalLabel">Show Hospital</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Show Firefighters</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{asset('assets/images/ambulance.png')}}" class="card-img-top" alt="...">
+                        <img src="{{asset('assets/images/fire.jpg')}}" class="card-img-top" alt="...">
                         <hr style="padding-top: 5px;">
                         <span class="text-black" style="font-size: 150%;">{{$data['name']}}</span>
                     </div>

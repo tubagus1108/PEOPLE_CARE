@@ -42,7 +42,7 @@ class RestControlller extends Controller
             $edit_link = "'".url('hospital/'.$data['id'].'/hospital-edit')."'";
             $show_link = "'".url('hospital/'.$data['id'].'/hospital-show')."'";
 
-            $show = '<button  key="'.$data['id'].'"  class="btn btn-danger text-white" data-toggle="modal" data-target="showHospital" onclick="showHospital('.$show_link.')"> <i class="fa fa-eye"> </i> </button>';
+            $show = '<button  key="'.$data['id'].'"  class="btn btn-danger text-white" data-toggle="modal" data-target="#showHospital" onclick="showHospital('.$show_link.')"> <i class="fa fa-eye"> </i> </button>';
             $edit = '<button  key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
             $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
             return $show.' '.$edit.' '.$delete;
@@ -108,10 +108,12 @@ class RestControlller extends Controller
             $delete_link = "'".url('firefighters/firefighters-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('firefighters/'.$data['id'].'/firefighters-edit')."'";
+            $show_link = "'".url('firefighters/'.$data['id'].'/firefighters-show')."'";
 
+            $show = '<button  key="'.$data['id'].'"  class="btn btn-danger text-white" data-toggle="modal" data-target="#showFirefighters" onclick="showFirefighters('.$show_link.')"> <i class="fa fa-eye"> </i> </button>';
             $edit = '<button  key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editFirefighters" onclick="editFirefighters('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
             $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
-            return $edit.' '.$delete;
+            return $show.' '.$edit.' '.$delete;
         })
         ->addColumn('created_at', function($data){
             return Carbon::parse($data['created_at'])->format('F d, y');
@@ -124,6 +126,10 @@ class RestControlller extends Controller
         if($data->delete())
             return redirect(url('firefighters/firefighters-data'))->with('success','Success delete firefighters');
         return redirect(url('firefighters/firefighters-data'))->with('failed','failed delete firefighters');
+    }
+    public function firefightersShow($id){
+        $data = Firefighters::find($id);
+        return view('firefighters.ajax-firefighters-show',compact('data'));
     }
     public function firefightersEdit($id){
         $data = Firefighters::find($id);
