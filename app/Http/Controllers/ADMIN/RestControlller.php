@@ -32,7 +32,7 @@ class RestControlller extends Controller
         }
     }
     public function hospitalDatatable(){
-        $data = Hospital::where('deleted_at',null)->get();
+        $data = Hospital::where('deleted_at',null)-> where('type',1)->get();
 
         return Datatables::of($data)
         ->addIndexColumn()
@@ -40,16 +40,22 @@ class RestControlller extends Controller
             $delete_link = "'".url('hospital/hospital-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('hospital/'.$data['id'].'/hospital-edit')."'";
+            $show_link = "'".url('hospital/'.$data['id'].'/hospital-show')."'";
 
+            $show = '<button  key="'.$data['id'].'"  class="btn btn-danger text-white" data-toggle="modal" data-target="showHospital" onclick="showHospital('.$show_link.')"> <i class="fa fa-eye"> </i> </button>';
             $edit = '<button  key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
             $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
-            return $edit.' '.$delete;
+            return $show.' '.$edit.' '.$delete;
         })
         ->addColumn('created_at', function($data){
             return Carbon::parse($data['created_at'])->format('F d, y');
         })
         ->rawColumns(['action'])
         ->make(true);
+    }
+    public function hospitalShow($id){
+        $data = Hospital::find($id);
+        return view('hospital.ajax-hospital-show',compact('data'));
     }
     public function hospitalDelete($id){
         $data = Hospital::find($id);

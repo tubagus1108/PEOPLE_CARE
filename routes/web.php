@@ -30,6 +30,7 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('hospital-delete/{id}', [RestControlller::class, 'hospitalDelete']);
         Route::get('/{id}/hospital-edit', [RestControlller::class, 'hospitalEdit'])->name('hospitalEdit');
         Route::post('hospital-edit-execute', [RestControlller::class, 'hospitalEditExecute']);
+        Route::get('/{id}/hospital-show', [RestControlller::class, 'hospitalShow'])->name('hospitalShow');
     });
     // Firefighters Prefix
     Route::prefix('firefighters')->group(function(){

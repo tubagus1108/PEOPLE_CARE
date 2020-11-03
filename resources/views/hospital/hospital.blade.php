@@ -49,8 +49,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="">type : </label>
-                                    <input type="text" name="type"class="form-control" value="1" readonly>
+                                    <input type="text" name="type"class="form-control" value="1" hidden>
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-info btn-block">Process</button>
@@ -66,8 +65,8 @@
                                 <th width="50">#</th>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th width="100px">Created At</th>
-                                <th width="100px">Action</th>
+                                <th width="50px">Created At</th>
+                                <th width="130px">Action</th>
                             </tr>
                         </thead>
                     </table>   
@@ -75,6 +74,14 @@
             </div>
         </div>
     </div>
+    {{-- Modal Show Hospital --}}
+    <div class="modal fade" id="showHospital" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content" id="box_show_hospital">
+        </div>
+        </div>
+    </div>
+
 
     {{-- Modal Edit Hospital --}}
     <div class="modal fade" id="editHospital" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -125,13 +132,23 @@
         });
 
         // Ajax Edit Hospital Data
-        editHospital = (link) => {
-            $.ajax({
+        editHospital = (link) =>
+        {
+            $.ajax(
+                {
                 url: link,
                 success: function(response){
                     $('#box_edit_hospital').html(response)
                 }
             })
         }
+        showHospital = (link) =>
+        $.ajax({
+            type: 'GET',
+            url: link,
+            success: function(response){
+                    $('#box_show_hospital').html(response)
+                }
+        })
     </script>
 @endsection

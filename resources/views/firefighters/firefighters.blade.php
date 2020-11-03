@@ -49,8 +49,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">type : </label>
-                                <input type="text" name="type"class="form-control" value="2" readonly>
+                                <input type="text" name="type"class="form-control" value="1" hidden>
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-info btn-block">Process</button>
@@ -98,7 +97,7 @@
                     { data: 'action', name: 'action'},
                 ],
                 language: {
-                searchPlaceholder: 'Citra Me..',
+                searchPlaceholder: 'Pemadam Ke..',
                 sSearch: '',
                 lengthMenu: '_MENU_ items/page',
                 destroy: true
