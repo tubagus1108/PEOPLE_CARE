@@ -30,7 +30,7 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('hospital-delete/{id}', [RestControlller::class, 'hospitalDelete']);
         Route::get('/{id}/hospital-edit', [RestControlller::class, 'hospitalEdit'])->name('hospitalEdit');
         Route::post('hospital-edit-execute', [RestControlller::class, 'hospitalEditExecute']);
-        Route::get('/{id}/hospital-show', [RestControlller::class, 'hospitalShow'])->name('hospitalShow');
+        Route::get('/{id}/hospital-detail', [RestControlller::class, 'hospitalDetail'])->name('hospitalDetail');
     });
     // Firefighters Prefix
     Route::prefix('firefighters')->group(function(){
@@ -40,7 +40,7 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('firefighters-delete/{id}', [RestControlller::class, 'firefightersDelete']);
         Route::get('/{id}/firefighters-edit', [RestControlller::class, 'firefightersEdit'])->name('firefightersEdit');
         Route::post('firefighters-edit-execute', [RestControlller::class, 'firefightersEditExecute']);
-        Route::get('/{id}/firefighters-show', [RestControlller::class, 'firefightersShow'])->name('firefightersShow');
+        Route::get('/{id}/firefighters-detail', [RestControlller::class, 'firefightersDetail'])->name('firefightersDetail');
     });
 
     // Territory Prefix

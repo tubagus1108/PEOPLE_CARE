@@ -66,7 +66,7 @@
                             <th>Name</th>
                             <th>Address</th>
                             <th width="50px">Created At</th>
-                            <th width="130px">Action</th>
+                            <th width="180px">Action</th>
                         </tr>
                     </thead>
                 </table>   

@@ -40,12 +40,13 @@ class RestControlller extends Controller
             $delete_link = "'".url('hospital/hospital-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('hospital/'.$data['id'].'/hospital-edit')."'";
-            $show_link = "'".url('hospital/'.$data['id'].'/hospital-show')."'";
+            $detail_link = url('hospital/'.$data['id'].'/hospital-detail');
 
-            $show = '<button  key="'.$data['id'].'"  class="btn btn-danger text-white" data-toggle="modal" data-target="#showHospital" onclick="showHospital('.$show_link.')"> <i class="fa fa-eye"> </i> </button>';
-            $edit = '<button  key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
+            
+            $detail = '<a href=" ' .$detail_link. ' " class="btn btn-success" > <i class="fa fa-eye"> </i> </a>';
+            $edit = '<button key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
             $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
-            return $show.' '.$edit.' '.$delete;
+            return $detail.' '.$edit.' '.$delete;
         })
         ->addColumn('created_at', function($data){
             return Carbon::parse($data['created_at'])->format('F d, y');
@@ -53,9 +54,9 @@ class RestControlller extends Controller
         ->rawColumns(['action'])
         ->make(true);
     }
-    public function hospitalShow($id){
+    public function hospitalDetail($id){
         $data = Hospital::find($id);
-        return view('hospital.ajax-hospital-show',compact('data'));
+        return view('hospital.detail-hospital',compact('data'));
     }
     public function hospitalDelete($id){
         $data = Hospital::find($id);
@@ -108,12 +109,12 @@ class RestControlller extends Controller
             $delete_link = "'".url('firefighters/firefighters-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('firefighters/'.$data['id'].'/firefighters-edit')."'";
-            $show_link = "'".url('firefighters/'.$data['id'].'/firefighters-show')."'";
+            $detail_link = url('firefighters/'.$data['id'].'/firefighters-detail');
 
-            $show = '<button  key="'.$data['id'].'"  class="btn btn-danger text-white" data-toggle="modal" data-target="#showFirefighters" onclick="showFirefighters('.$show_link.')"> <i class="fa fa-eye"> </i> </button>';
+            $detail = '<a href=" ' .$detail_link. ' " class="btn btn-success" > <i class="fa fa-eye"> </i> </a>';
             $edit = '<button  key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editFirefighters" onclick="editFirefighters('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
             $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
-            return $show.' '.$edit.' '.$delete;
+            return $detail.' '.$edit.' '.$delete;
         })
         ->addColumn('created_at', function($data){
             return Carbon::parse($data['created_at'])->format('F d, y');
@@ -127,9 +128,9 @@ class RestControlller extends Controller
             return redirect(url('firefighters/firefighters-data'))->with('success','Success delete firefighters');
         return redirect(url('firefighters/firefighters-data'))->with('failed','failed delete firefighters');
     }
-    public function firefightersShow($id){
+    public function firefightersDetail($id){
         $data = Firefighters::find($id);
-        return view('firefighters.ajax-firefighters-show',compact('data'));
+        return view('firefighters.detail-firefighters',compact('data'));
     }
     public function firefightersEdit($id){
         $data = Firefighters::find($id);
