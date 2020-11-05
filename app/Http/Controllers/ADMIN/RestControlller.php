@@ -32,7 +32,7 @@ class RestControlller extends Controller
         }
     }
     public function hospitalDatatable(){
-        $data = Hospital::where('deleted_at',null)->get();
+        $data = Hospital::where('deleted_at',null)-> where('type',1)->get();
 
         return Datatables::of($data)
         ->addIndexColumn()
@@ -40,16 +40,23 @@ class RestControlller extends Controller
             $delete_link = "'".url('hospital/hospital-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('hospital/'.$data['id'].'/hospital-edit')."'";
+            $detail_link = url('hospital/'.$data['id'].'/hospital-detail');
 
-            $edit = '<button  key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
+            
+            $detail = '<a href=" ' .$detail_link. ' " class="btn btn-success" > <i class="fa fa-eye"> </i> </a>';
+            $edit = '<button key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
             $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
-            return $edit.' '.$delete;
+            return $detail.' '.$edit.' '.$delete;
         })
         ->addColumn('created_at', function($data){
             return Carbon::parse($data['created_at'])->format('F d, y');
         })
         ->rawColumns(['action'])
         ->make(true);
+    }
+    public function hospitalDetail($id){
+        $data = Hospital::find($id);
+        return view('hospital.detail-hospital',compact('data'));
     }
     public function hospitalDelete($id){
         $data = Hospital::find($id);
@@ -102,10 +109,12 @@ class RestControlller extends Controller
             $delete_link = "'".url('firefighters/firefighters-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('firefighters/'.$data['id'].'/firefighters-edit')."'";
+            $detail_link = url('firefighters/'.$data['id'].'/firefighters-detail');
 
+            $detail = '<a href=" ' .$detail_link. ' " class="btn btn-success" > <i class="fa fa-eye"> </i> </a>';
             $edit = '<button  key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editFirefighters" onclick="editFirefighters('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
             $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
-            return $edit.' '.$delete;
+            return $detail.' '.$edit.' '.$delete;
         })
         ->addColumn('created_at', function($data){
             return Carbon::parse($data['created_at'])->format('F d, y');
@@ -118,6 +127,10 @@ class RestControlller extends Controller
         if($data->delete())
             return redirect(url('firefighters/firefighters-data'))->with('success','Success delete firefighters');
         return redirect(url('firefighters/firefighters-data'))->with('failed','failed delete firefighters');
+    }
+    public function firefightersDetail($id){
+        $data = Firefighters::find($id);
+        return view('firefighters.detail-firefighters',compact('data'));
     }
     public function firefightersEdit($id){
         $data = Firefighters::find($id);
