@@ -18,7 +18,7 @@
 
             {{-- Hospital --}}
             <li class="dropdown">
-              <a href="{{route('hospital')}}" class="nav-link menu-title {{request()->route()->getPrefix() == 'hospital' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-building" style="font-size:20px;"></i></button><span>Hospital</span>     
+              <a href="{{route('hospital')}}" class="nav-link menu-title {{request()->route()->getPrefix() == '/hospital' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-building" style="font-size:20px;"></i></button><span>Hospital</span>     
               </a>
             </li>
 

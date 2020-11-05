@@ -11,8 +11,21 @@
     <link rel="icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb3hUocjT4p9z45iwS-uiHQF6UpUFpSVU&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
     <title>KitaKitaDevs - @yield('title')</title>
     @include('layouts.light.css')
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
     @yield('style')    
   </head>
   <body class="light-only" main-theme-layout="ltr">
