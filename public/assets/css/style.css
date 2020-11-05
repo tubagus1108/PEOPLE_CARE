@@ -130,7 +130,7 @@ a:hover {
 
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
-	background: #7366ff
+	background: #7366ff;
 }
 
 .owl-theme .owl-nav.disabled+.owl-dots {
