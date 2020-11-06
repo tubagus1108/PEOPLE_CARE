@@ -13,7 +13,7 @@ class CreateEmployeeTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('admin')){
+        if(!Schema::hasTable('employee')){
             Schema::create('employee', function (Blueprint $table) {
                 if(config('database.default') == 'pgsql')
                     $table->string('uid')->default(DB::raw('gen_uuid()'))->primary();

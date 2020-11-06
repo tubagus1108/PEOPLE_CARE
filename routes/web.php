@@ -31,6 +31,10 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('/{id}/hospital-edit', [RestControlller::class, 'hospitalEdit'])->name('hospitalEdit');
         Route::post('hospital-edit-execute', [RestControlller::class, 'hospitalEditExecute']);
         Route::get('/{id}/hospital-detail', [RestControlller::class, 'hospitalDetail'])->name('hospitalDetail');
+        Route::get('pegawai-datatable', [RestControlller::class, 'pegawaiDatatable'])->name('pegawai-datatable');
+        // Add Pegawai
+        Route::get('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai'])->name('hospitalAddPegawai');
+        Route::post('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai']);
     });
     // Firefighters Prefix
     Route::prefix('firefighters')->group(function(){

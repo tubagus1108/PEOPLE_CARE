@@ -81,15 +81,6 @@
         </div>
     </div>
 
-
-    {{-- Modal Show Hospital --}}
-    <div class="modal fade" id="showHospital" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content" id="box_show_hospital">
-        </div>
-        </div>
-    </div>
-
     {{-- Modal Edit Hospital --}}
     <div class="modal fade" id="editHospital" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -149,14 +140,6 @@
                     }
                 })
             }
-            showHospital = (link) =>
-            $.ajax({
-                type: 'GET',
-                url: link,
-                success: function(response){
-                        $('#box_show_hospital').html(response)
-                    }
-            })
         
         // Map Event
             function initMap() {

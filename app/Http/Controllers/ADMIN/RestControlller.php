@@ -6,6 +6,7 @@ use App\Models\Admin\Firefighters;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Hospital;
+use App\Models\Admin\HospitalPegawai;
 use Datatables;
 use Carbon\Carbon;
 
@@ -81,6 +82,32 @@ class RestControlller extends Controller
             return redirect(url('hospital/hospital-data'))->with('success','successfully changed data hospital ' .$data['name']);
         return redirect(url('hospital/'.$request->id.'/hospital-edit'))->with('failed','failed to change data hospital' .$data['name']);
     }
+    public function pegawaiDatatable(){
+        $data = HospitalPegawai::where('deleted_at',null)->get();
+        return Datatables::of($data)
+        ->addIndexColumn();
+    }
+    public function hospitalAddPegawai(Request $request,$id){
+        $data = $request->validate([
+            'name' => 'required|unique:employee,name|min:2',
+            'username' => 'required|unique:employee,username|min:2',
+            'password' => 'required|min:2',
+            'phone' => 'required|min:11|numeric',
+            
+        ]);
+        $data = HospitalPegawai::where('deleted_at',null);
+        if(!$request->all())
+            return view('hospital.detail-hospital',compact('hospital'));
+        else{
+            $data = HospitalPegawai::find($id);
+            $insert = HospitalPegawai::create($request->all());
+            if($insert)
+                return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('success', 'Success stored new hospital Pegawai');
+            return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('failed', 'failed stored new hospital Pegawai');
+        }
+    }
+
+
 
     // Firefighters
     public function firefightersData(Request $request){
