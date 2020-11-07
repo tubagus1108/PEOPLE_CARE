@@ -20,6 +20,7 @@ class CreateEmployeeTable extends Migration
                 else if(config('database.default') == 'mysql')
                     $table->string('uid')->default(DB::raw('uuid()'))->primary();
                 $table->integer('rest_id');
+                $table->integer('position_id');
                 $table->string('name');
                 $table->string('username');
                 $table->string('password');

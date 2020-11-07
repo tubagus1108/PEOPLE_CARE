@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ADMIN\DashboardController;
 use App\Http\Controllers\ADMIN\TerritoryController;
 use App\Http\Controllers\ADMIN\RestControlller;
+use App\Http\Controllers\ADMIN\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,12 @@ Route::namespace('ADMIN')->group(function(){
         Route::post('hospital-edit-execute', [RestControlller::class, 'hospitalEditExecute']);
         Route::get('/{id}/hospital-detail', [RestControlller::class, 'hospitalDetail'])->name('hospitalDetail');
         Route::get('pegawai-datatable', [RestControlller::class, 'pegawaiDatatable'])->name('pegawai-datatable');
-        // Add Pegawai
+        // Add Pegawai Hospital
         Route::get('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai'])->name('hospitalAddPegawai');
         Route::post('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai']);
+        Route::get('pegawai-hospital-datatable', [RestControlller::class, 'pegawaiHospitalDatatable'])->name('pegawai-datatable');
+        Route::get('pegawai-hospital-delete/{id}', [RestControlller::class, 'pegawaiHospitalDelete']);
+        
     });
     // Firefighters Prefix
     Route::prefix('firefighters')->group(function(){
@@ -46,7 +50,7 @@ Route::namespace('ADMIN')->group(function(){
         Route::post('firefighters-edit-execute', [RestControlller::class, 'firefightersEditExecute']);
         Route::get('/{id}/firefighters-detail', [RestControlller::class, 'firefightersDetail'])->name('firefightersDetail');
     });
-
+    
     // Territory Prefix
     Route::prefix('territory')->group(function(){
         // PROVINCE
@@ -65,5 +69,15 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('city-delete/{id}', [TerritoryController::class, 'cityDelete']);
         Route::get('/{id}/city-edit', [TerritoryController::class, 'cityEdit'])->name('cityEdit');
         Route::post('city-edit-execute', [TerritoryController::class, 'cityEditExecute']);
+    });
+
+    // SETTINGS
+    Route::prefix('settings')->group(function(){
+        Route::get('employee',[SettingsController::class, 'employee'])->name('employee');
+        Route::post('employee',[SettingsController::class, 'employee']);
+        Route::get('employee-datatable', [SettingsController::class, 'employeeDatatable'])->name('employee-datatable');
+        Route::get('employee-delete/{id}', [SettingsController::class, 'employeeDelete']);
+        Route::get('/{id}/employee-edit', [SettingsController::class, 'employeeEdit'])->name('employeeEdit');
+        Route::post('employee-edit-execute', [SettingsController::class, 'employeeEditExecute']);
     });
 });

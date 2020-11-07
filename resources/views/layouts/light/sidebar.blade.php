@@ -41,11 +41,11 @@
 
             {{-- Settings --}}
             <li class="dropdown">
-              <a class="nav-link menu-title {{request()->route()->getPrefix() == '/territory' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-cogs" style="font-size:20px;"></i></button><span>Settings </span>
+              <a class="nav-link menu-title {{request()->route()->getPrefix() == '/settings' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-cogs" style="font-size:20px;"></i></button><span>Settings </span>
                   <div class="according-menu"></div>
               </a>
-              <ul class="nav-submenu menu-content" style="display: {{ request()->route()->getPrefix() == '/territory' ? 'block;' : 'none;' }}">
-                <li><a href="{{route('province')}}" class="{{ Route::currentRouteName()=='province' ? 'active' : '' }}">Employee Position</a></li>
+              <ul class="nav-submenu menu-content" style="display: {{ request()->route()->getPrefix() == '/settings' ? 'block;' : 'none;' }}">
+                <li><a href="{{route('employee')}}" class="{{ Route::currentRouteName()=='employee' ? 'active' : '' }}">Employee Position</a></li>
               </ul>
             </li>
           </ul>
