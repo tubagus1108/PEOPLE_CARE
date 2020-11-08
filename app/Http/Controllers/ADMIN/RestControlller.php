@@ -86,8 +86,8 @@ class RestControlller extends Controller
     }
 
     // Data Pegawai Hospital
-    public function pegawaiHospitalDatatable(){
-        $data = Employee::where('deleted_at',null)->get();
+    public function pegawaiHospitalDatatable($rest_id){
+        $data = Employee::where('deleted_at',null)->where('rest_id',$rest_id)->get();
         
         return Datatables::of($data)
         ->addIndexColumn()

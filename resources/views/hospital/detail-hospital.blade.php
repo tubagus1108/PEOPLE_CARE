@@ -140,7 +140,7 @@
         // Datatable
         $(function(){
             $('#data-employee').DataTable({
-                ajax: '{{route('pegawai-datatable')}}',
+                ajax: '{{url('hospital/pegawai-hospital-datatable/'.$data['id'])}}',
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                     { data: 'name', name: 'name'},
