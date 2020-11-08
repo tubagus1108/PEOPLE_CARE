@@ -39,7 +39,6 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai'])->name('hospitalAddPegawai');
         Route::post('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai']);
         Route::get('pegawai-hospital-datatable', [RestControlller::class, 'pegawaiHospitalDatatable'])->name('pegawai-datatable');
-        Route::get('pegawai-hospital-delete/{id}', [RestControlller::class, 'pegawaiHospitalDelete']);
         
     });
     // Firefighters Prefix

@@ -24,10 +24,10 @@
                         <thead>
                             <tr class="text-center">
                                 <th width="50">#</th>
-                                <th>Name</th>
+                                <th width="100px">Name</th>
                                 <th>Address</th>
                                 <th width="50px">Created At</th>
-                                <th width="180px">Action</th>
+                                <th width="100px">Action</th>
                             </tr>
                         </thead>
                     </table>   

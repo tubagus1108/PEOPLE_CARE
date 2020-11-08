@@ -6,7 +6,7 @@ use App\Models\Admin\Firefighters;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Hospital;
-use App\Models\Admin\HospitalPegawai;
+use App\Models\Admin\Employee;
 use App\Models\Admin\Settings;
 use Datatables;
 use Carbon\Carbon;
@@ -87,7 +87,7 @@ class RestControlller extends Controller
 
     // Data Pegawai Hospital
     public function pegawaiHospitalDatatable(){
-        $data = HospitalPegawai::where('deleted_at',null)->get();
+        $data = Employee::where('deleted_at',null)->get();
         
         return Datatables::of($data)
         ->addIndexColumn()
@@ -116,26 +116,26 @@ class RestControlller extends Controller
             
         ]);
         $employee = Settings::where('deleted_at',null)->get();
-        $data = HospitalPegawai::where('deleted_at',null);
+        $data = Employee::where('deleted_at',null);
         if(!$request->all())
             return view('hospital.detail-hospital',compact('data', 'employee'));
         else{
-            $data = HospitalPegawai::find($id);
-            $insert = HospitalPegawai::create($request->all());
+            $data = Employee::find($id);
+            $insert = Employee::create($request->all());
             if($insert)
                 return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('success', 'Success stored new hospital Pegawai');
             return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('failed', 'failed stored new hospital Pegawai');
         }
     }
-    public function pegawaiHospitalDelete($id){
-        $data = HospitalPegawai::find($id);
+    public function pegawaiHospitalDelete($uid){
+        $data = Employee::find($uid);
         if($data->delete())
-            return redirect(url('hospital/hospital-detail'))->with('success','Success delete hospital');
-        return redirect(url('hospital/hospital-detail'))->with('failed','Failed delete hospital');
+            return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('success','Success delete hospital');
+        return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('failed','Failed delete hospital');
     }
     public function employeeEdit(Request $request, $uid){
         $employee = Settings::where('deleted_at',null)->get();
-        $data = HospitalPegawai::find($uid);
+        $data = Employee::find($uid);
         if(!$request->all())
             return view('hospital.ajax-edit-pegawai', compact('data', 'employee'));
         $data->name = $request->name;

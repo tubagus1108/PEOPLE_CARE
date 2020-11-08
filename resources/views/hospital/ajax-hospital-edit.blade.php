@@ -47,3 +47,9 @@
         <button type="submit" class="btn btn-primary">Save changes</button>
     </div>
 </form>
+@section('script')
+    <script>
+        
+        
+    </script>
+@endsection
