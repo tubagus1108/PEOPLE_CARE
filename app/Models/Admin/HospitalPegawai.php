@@ -9,6 +9,7 @@ class HospitalPegawai extends Model
 {
     use HasFactory;
     protected $table = "employee";
+    public $incrementing = false;
     protected $guarded = [];
-    protected $primaryKey = 'rest_id';
+    protected $primaryKey = 'uid';
 }

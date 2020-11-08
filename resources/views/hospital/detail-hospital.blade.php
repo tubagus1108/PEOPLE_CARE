@@ -125,7 +125,14 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
+{{-- Modal Edit Pegawai --}}
+<div class="modal fade" id="editPegawai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" id="box_edit_pegawai">
+      </div>
+    </div>
+</div>
 @endsection
 
 @section('script')
@@ -169,5 +176,17 @@
                 "serverSide": true, 
             });
         });
+
+        // Ajax Edit Pegawai Data
+        editPegawai = (link) =>
+            {
+                $.ajax(
+                    {
+                    url: link,
+                    success: function(response){
+                        $('#box_edit_pegawai').html(response)
+                    }
+                })
+            }
     </script>
 @endsection

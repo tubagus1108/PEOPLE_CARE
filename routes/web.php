@@ -33,6 +33,8 @@ Route::namespace('ADMIN')->group(function(){
         Route::post('hospital-edit-execute', [RestControlller::class, 'hospitalEditExecute']);
         Route::get('/{id}/hospital-detail', [RestControlller::class, 'hospitalDetail'])->name('hospitalDetail');
         Route::get('pegawai-datatable', [RestControlller::class, 'pegawaiDatatable'])->name('pegawai-datatable');
+        Route::get('/{uid}/employee-edit', [RestControlller::class, 'employeeEdit']);
+        Route::post('/{uid}/employee-edit', [RestControlller::class, 'employeeEdit']);
         // Add Pegawai Hospital
         Route::get('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai'])->name('hospitalAddPegawai');
         Route::post('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai']);

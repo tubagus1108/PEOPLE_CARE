@@ -42,12 +42,12 @@ class RestControlller extends Controller
             $delete_link = "'".url('hospital/hospital-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('hospital/'.$data['id'].'/hospital-edit')."'";
-            $detail_link = url('hospital/'.$data['id'].'/hospital-detail');
+            $detail_link = "'".url('hospital/'.$data['id'].'/hospital-detail')."'";
 
             
-            $detail = '<a href=" ' .$detail_link. ' " class="btn btn-success" > <i class="fa fa-eye"> </i> </a>';
-            $edit = '<button key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
-            $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
+            $detail = '<button onclick ="document.location.href='.$detail_link.'" class="btn btn-success p-2" > <i class="fa fa-eye"> </i> </button>';
+            $edit = '<button key="'.$data['id'].'"  class="btn btn-info p-2 text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
+            $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger p-2 text-white"> <i class="fa fa-trash"> </i> </button>';
             return $detail.' '.$edit.' '.$delete;
         })
         ->addColumn('created_at', function($data){
@@ -94,10 +94,10 @@ class RestControlller extends Controller
         ->addColumn('action', function($data){
             $delete_link = "'".url('hospital/pegawai-hospital-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
-            $edit_link = "'".url('hospital/'.$data['id'].'/hospital-edit')."'";
+            $edit_link = "'".url('hospital/'.$data['uid'].'/employee-edit')."'";
 
             
-            $edit = '<button key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editHospital" onclick="editHospital('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
+            $edit = '<button key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editPegawai" onclick="editPegawai('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
             $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
             return $edit.' '.$delete;
         })
@@ -132,6 +132,21 @@ class RestControlller extends Controller
         if($data->delete())
             return redirect(url('hospital/hospital-detail'))->with('success','Success delete hospital');
         return redirect(url('hospital/hospital-detail'))->with('failed','Failed delete hospital');
+    }
+    public function employeeEdit(Request $request, $uid){
+        $employee = Settings::where('deleted_at',null)->get();
+        $data = HospitalPegawai::find($uid);
+        if(!$request->all())
+            return view('hospital.ajax-edit-pegawai', compact('data', 'employee'));
+        $data->name = $request->name;
+        $data->username = $request->username;
+        $data->email = $request->email;
+        $data->password = $request->password;
+        $data->phone = $request->phone;
+        $data->position_id = $request->position_id;
+        if($data->save())
+            return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('success', 'Employee is Edited !');
+        return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('failed', 'Employee is failed to be edited, contact developer !');
     }
 
 

@@ -137,6 +137,27 @@
                     url: link,
                     success: function(response){
                         $('#box_edit_hospital').html(response)
+                        function initMap() {
+                            const current = { lat: 3.5901977, lng: 98.6788886 };
+                            const map = new google.maps.Map(document.getElementById("map_edit"), {
+                                zoom: 4,
+                                center: current,
+                            });
+                            const marker = new google.maps.Marker({
+                                position: current,
+                                map: map,
+                            });
+                            marker.setDraggable(true);
+                            google.maps.event.addListener(marker, 'dragend', function (evt) {
+                                $("#latitude_edit").val(evt.latLng.lat().toFixed(6));
+                                $("#longtitude_edit").val(evt.latLng.lng().toFixed(6));
+
+                                map.panTo(evt.latLng);
+                            });
+                            $("#latitude_edit").val(current['lat']);
+                            $("#longtitude_edit").val(current['lng']);
+                            
+                        }
                     }
                 })
             }
