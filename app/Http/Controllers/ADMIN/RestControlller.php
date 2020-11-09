@@ -92,7 +92,7 @@ class RestControlller extends Controller
         return Datatables::of($data)
         ->addIndexColumn()
         ->addColumn('action', function($data){
-            $delete_link = "'".url('hospital/pegawai-hospital-delete/'.$data['id'])."'";
+            $delete_link = "'".url('hospital/employee-delete/'.$data['uid'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('hospital/'.$data['uid'].'/employee-edit')."'";
 
@@ -127,11 +127,11 @@ class RestControlller extends Controller
             return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('failed', 'failed stored new hospital Pegawai');
         }
     }
-    public function pegawaiHospitalDelete($uid){
+    public function employeeDelete($uid){
         $data = Employee::find($uid);
         if($data->delete())
-            return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('success','Success delete hospital');
-        return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('failed','Failed delete hospital');
+            return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('success','Success Employee hospital');
+        return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('failed','Failed Employee hospital');
     }
     public function employeeEdit(Request $request, $uid){
         $employee = Settings::where('deleted_at',null)->get();
@@ -170,7 +170,7 @@ class RestControlller extends Controller
         }
     }
     public function firefightersDatatable(){
-        $data = Firefighters::where('deleted_at',null)-> where('type',2)->get();
+        $data = Firefighters::where('deleted_at',null)->where('type',2)->get();
 
         return Datatables::of($data)
         ->addIndexColumn()
@@ -178,11 +178,11 @@ class RestControlller extends Controller
             $delete_link = "'".url('firefighters/firefighters-delete/'.$data['id'])."'";
             $delete_message = "'This cannot be undo'";
             $edit_link = "'".url('firefighters/'.$data['id'].'/firefighters-edit')."'";
-            $detail_link = url('firefighters/'.$data['id'].'/firefighters-detail');
+            $detail_link = "'".url('firefighters/'.$data['id'].'/firefighters-detail')."'";
 
-            $detail = '<a href=" ' .$detail_link. ' " class="btn btn-success" > <i class="fa fa-eye"> </i> </a>';
-            $edit = '<button  key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editFirefighters" onclick="editFirefighters('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
-            $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
+            $detail = '<button onclick ="document.location.href='.$detail_link.'" class="btn btn-success p-2" > <i class="fa fa-eye"> </i> </button>';
+            $edit = '<button key="'.$data['id'].'"  class="btn btn-info p-2 text-white" data-toggle="modal" data-target="#editFirefighters" onclick="editFirefighters('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
+            $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger p-2 text-white"> <i class="fa fa-trash"> </i> </button>';
             return $detail.' '.$edit.' '.$delete;
         })
         ->addColumn('created_at', function($data){
@@ -199,7 +199,8 @@ class RestControlller extends Controller
     }
     public function firefightersDetail($id){
         $data = Firefighters::find($id);
-        return view('firefighters.detail-firefighters',compact('data'));
+        $employee = Settings::where('deleted_at',null)->get();
+        return view('firefighters.detail-firefighters',compact('data','employee'));
     }
     public function firefightersEdit($id){
         $data = Firefighters::find($id);
@@ -217,4 +218,48 @@ class RestControlller extends Controller
             return redirect(url('firefighters/firefighters-data'))->with('success','successfully changed data firefighters ' .$data['name']);
         return redirect(url('firefighters/'.$request->id.'/firefighters-edit'))->with('failed','failed to change data firefighters' .$data['name']);
     }
+     // Data Pegawai Hospital
+     public function pegawaiFirefightersDatatable($rest_id){
+        $data = Employee::where('deleted_at',null)->where('rest_id',$rest_id)->get();
+        
+        return Datatables::of($data)
+        ->addIndexColumn()
+        ->addColumn('action', function($data){
+            $delete_link = "'".url('firefighters/employee-delete/'.$data['uid'])."'";
+            $delete_message = "'This cannot be undo'";
+            $edit_link = "'".url('firefighters/'.$data['uid'].'/employee-edit')."'";
+
+            
+            $edit = '<button key="'.$data['id'].'"  class="btn btn-info text-white" data-toggle="modal" data-target="#editPegawai" onclick="editPegawai('.$edit_link.')"> <i class="fa fa-edit"> </i> </button>';
+            $delete = '<button onclick="confirm_me('.$delete_message.','.$delete_link.')" class="btn btn-danger text-white"> <i class="fa fa-trash"> </i> </button>';
+            return $edit.' '.$delete;
+        })
+        ->addColumn('created_at', function($data){
+            return Carbon::parse($data['created_at'])->format('F d, y');
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+    }
+    public function firefightersAddPegawai(Request $request,$id){
+        $data = $request->validate([
+            'name' => 'required|unique:employee,name|min:2',
+            'username' => 'required|unique:employee,username|min:2',
+            'password' => 'required|min:2',
+            'phone' => 'required|min:11|numeric',
+            
+        ]);
+        $employee = Settings::where('deleted_at',null)->get();
+        $data = Employee::where('deleted_at',null);
+        if(!$request->all())
+            return view('firefighters.detail-firefighters',compact('data', 'employee'));
+        else{
+            $data = Employee::find($id);
+            $insert = Employee::create($request->all());
+            if($insert)
+                return redirect(url('firefighters/{id}/firefighters-add-pegawai'))->with('success', 'Success stored new hospital Pegawai');
+            return redirect(url('firefighters/{id}/firefighters-add-pegawai'))->with('failed', 'failed stored new hospital Pegawai');
+        }
+    }
+    
+
 }

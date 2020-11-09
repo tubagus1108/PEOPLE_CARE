@@ -27,7 +27,7 @@
                             <th>Name</th>
                             <th>Address</th>
                             <th width="50px">Created At</th>
-                            <th width="180px">Action</th>
+                            <th width="100px">Action</th>
                         </tr>
                     </thead>
                 </table>   
@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group" id="map"></div>
                     <div class="form-group">
-                        <input type="text" name="type"class="form-control" value="1" hidden>
+                        <input type="text" name="type"class="form-control" value="2" hidden>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-info btn-block">Process</button>

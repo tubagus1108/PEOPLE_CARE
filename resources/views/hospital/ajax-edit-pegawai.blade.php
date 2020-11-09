@@ -1,6 +1,6 @@
 <form action="{{url('hospital/'.$data['uid'].'/employee-edit')}}" method="POST">@csrf
     <div class="modal-header">
-        <h4 class="modal-title">Add Pegawai</h4>
+        <h4 class="modal-title">Edit Pegawai</h4>
     </div>
     <div class="modal-body">
         <div class="form-group">
