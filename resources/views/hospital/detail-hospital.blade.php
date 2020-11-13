@@ -20,8 +20,8 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="col">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addpegawai"><i class="fa fa-plus"></i> Add Pegawai</button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#showHospital"><i class="fa fa-eye"></i> Information Hospital</button>
+                    <button type="button" class="btn btn-primary p-2" data-toggle="modal" data-target="#addpegawai"><i class="fa fa-plus"></i> Add Pegawai</button>
+                    <button type="button" class="btn btn-danger p-2" data-toggle="modal" data-target="#showHospital"><i class="fa fa-eye"></i> Information Hospital</button>
                     
                 </div>    
                 <table class="table table-bordered data-table" id="data-employee">
@@ -133,11 +133,12 @@
       </div>
     </div>
 </div>
+
 @endsection
 
 @section('script')
     <script>
-        // Datatable
+        // Datatable Hospital
         $(function(){
             $('#data-employee').DataTable({
                 ajax: '{{url('hospital/pegawai-hospital-datatable/'.$data['id'])}}',

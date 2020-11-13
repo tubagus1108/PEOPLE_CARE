@@ -32,13 +32,15 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('/{id}/hospital-edit', [RestControlller::class, 'hospitalEdit'])->name('hospitalEdit');
         Route::post('hospital-edit-execute', [RestControlller::class, 'hospitalEditExecute']);
         Route::get('/{id}/hospital-detail', [RestControlller::class, 'hospitalDetail'])->name('hospitalDetail');
-        Route::get('/{uid}/employee-edit', [RestControlller::class, 'employeeEdit']);
-        Route::post('/{uid}/employee-edit', [RestControlller::class, 'employeeEdit']);
-        Route::get('employee-delete/{uid}', [RestControlller::class, 'employeeDelete']);
+        Route::get('/{uid}/employee-edit', [RestControlller::class, 'employeeHospitalEdit']);
+        Route::post('/{uid}/employee-edit', [RestControlller::class, 'employeeHospitalEdit']);
+        Route::get('employee-delete/{uid}', [RestControlller::class, 'employeeHospitalDelete']);
         // Add Pegawai Hospital
         Route::get('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai'])->name('hospitalAddPegawai');
         Route::post('/{id}/hospital-add-pegawai', [RestControlller::class, 'hospitalAddPegawai']);
         Route::get('pegawai-hospital-datatable/{rest_id}', [RestControlller::class, 'pegawaiHospitalDatatable']);
+        Route::get('/{id}/return',[RestControlller::class, 'returnEmployee']);
+        
         
     });
     // Firefighters Prefix
@@ -50,6 +52,13 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('/{id}/firefighters-edit', [RestControlller::class, 'firefightersEdit'])->name('firefightersEdit');
         Route::post('firefighters-edit-execute', [RestControlller::class, 'firefightersEditExecute']);
         Route::get('/{id}/firefighters-detail', [RestControlller::class, 'firefightersDetail'])->name('firefightersDetail');
+        Route::get('/{uid}/employee-edit', [RestControlller::class, 'employeeFirefightersEdit']);
+        Route::post('/{uid}/employee-edit', [RestControlller::class, 'employeeFirefightersEdit']);
+        Route::get('employee-delete/{uid}', [RestControlller::class, 'employeeFirefightersDelete']);
+        // Add Pegawai Hospital
+        Route::get('/{id}/firefighters-add-pegawai', [RestControlller::class, 'firefightersAddPegawai'])->name('hospitalAddPegawai');
+        Route::post('/{id}/firefighters-add-pegawai', [RestControlller::class, 'firefightersAddPegawai']);
+        Route::get('pegawai-firefighters-datatable/{rest_id}', [RestControlller::class, 'pegawaiFirefightersDatatable']);
     });
     
     // Territory Prefix

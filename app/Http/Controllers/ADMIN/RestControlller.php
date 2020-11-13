@@ -127,13 +127,13 @@ class RestControlller extends Controller
             return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('failed', 'failed stored new hospital Pegawai');
         }
     }
-    public function employeeDelete($uid){
+    public function employeeHospitalDelete($uid){
         $data = Employee::find($uid);
         if($data->delete())
             return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('success','Success Employee hospital');
         return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('failed','Failed Employee hospital');
     }
-    public function employeeEdit(Request $request, $uid){
+    public function employeeHospitalEdit(Request $request, $uid){
         $employee = Settings::where('deleted_at',null)->get();
         $data = Employee::find($uid);
         if(!$request->all())
@@ -148,7 +148,11 @@ class RestControlller extends Controller
             return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('success', 'Employee is Edited !');
         return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('failed', 'Employee is failed to be edited, contact developer !');
     }
-
+    public function returnEmployee($uid){
+        $data = Employee::onlyTrashed()->where('uid',$uid);
+        $data->restore();
+        return redirect(url('hospital/'.$data['rest_id'].'/hospital-detail'))->with('success', 'Employee is Restore !');
+    }
 
 
     // Firefighters
@@ -218,7 +222,7 @@ class RestControlller extends Controller
             return redirect(url('firefighters/firefighters-data'))->with('success','successfully changed data firefighters ' .$data['name']);
         return redirect(url('firefighters/'.$request->id.'/firefighters-edit'))->with('failed','failed to change data firefighters' .$data['name']);
     }
-     // Data Pegawai Hospital
+     // Data Pegawai Firefighters
      public function pegawaiFirefightersDatatable($rest_id){
         $data = Employee::where('deleted_at',null)->where('rest_id',$rest_id)->get();
         
@@ -259,6 +263,27 @@ class RestControlller extends Controller
                 return redirect(url('firefighters/{id}/firefighters-add-pegawai'))->with('success', 'Success stored new hospital Pegawai');
             return redirect(url('firefighters/{id}/firefighters-add-pegawai'))->with('failed', 'failed stored new hospital Pegawai');
         }
+    }
+    public function employeeFirefightersDelete($uid){
+        $data = Employee::find($uid);
+        if($data->delete())
+            return redirect(url('firefighters/'.$data['rest_id'].'/firefighters-detail'))->with('success','Success Employee hospital');
+        return redirect(url('firefighters/'.$data['rest_id'].'/firefighters-detail'))->with('failed','Failed Employee hospital');
+    }
+    public function employeeFirefightersEdit(Request $request, $uid){
+        $employee = Settings::where('deleted_at',null)->get();
+        $data = Employee::find($uid);
+        if(!$request->all())
+            return view('firefighters.ajax-edit-pegawai', compact('data', 'employee'));
+        $data->name = $request->name;
+        $data->username = $request->username;
+        $data->email = $request->email;
+        $data->password = $request->password;
+        $data->phone = $request->phone;
+        $data->position_id = $request->position_id;
+        if($data->save())
+            return redirect(url('firefighters/'.$data['rest_id'].'/firefighters-detail'))->with('success', 'Employee is Edited !');
+        return redirect(url('firefighters/'.$data['rest_id'].'/firefighters-detail'))->with('failed', 'Employee is failed to be edited, contact developer !');
     }
     
 
