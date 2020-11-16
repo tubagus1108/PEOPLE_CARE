@@ -6,12 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Settings;
 use App\Models\Admin\Hospital;
+use App\Models\Admin\AdminLog;
 use App\Models\Admin\Firefighters;
 use Datatables;
 use Carbon\Carbon;
 
 class SettingsController extends Controller
 {
+    protected $adminLog;
+    public function __construct(){
+        $this->adminLog = new AdminLog();
+    }
     public function employee(Request $request){
         $hospital = Hospital::where('deleted_at',null)->get();
         $employee = Settings::where('deleted_at',null)->get();
@@ -19,8 +24,10 @@ class SettingsController extends Controller
             return view('settings.employee', compact('employee', 'hospital'));
         else{
             $insert = $request->validate([
-                'name' => 'required|unique:employee_position,name|max:30|min:2,'
+                'name' => 'required'
             ]);
+            // Add Admin Log
+            $this->adminLog->newLog('test', 'Message');
             $insert = Settings::create($request->all());
             if($insert)
                 return redirect(route('employee'))->with('success', 'Success stored new Employee data');

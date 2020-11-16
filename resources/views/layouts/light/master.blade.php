@@ -11,6 +11,12 @@
     <link rel="icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    
+    <script>
+      function initMap(){
+        alert('asasas')
+      }
+    </script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb3hUocjT4p9z45iwS-uiHQF6UpUFpSVU&callback=initMap&libraries=&v=weekly"
       defer

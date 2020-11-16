@@ -31,7 +31,7 @@
             <span class="text-danger">{{ $errors->first('longtitude') }}</span>
         @endif
         </div>
-        <div class="form-group" id="map"></div>
+        <div class="form-group" id="map_edit"></div>
         <div class="form-group">
             <input type="text" name="type"class="form-control" value="1" hidden>
         </div>
