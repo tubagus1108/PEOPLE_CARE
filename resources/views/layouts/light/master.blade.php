@@ -12,11 +12,6 @@
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     
-    <script>
-      function initMap(){
-        alert('asasas')
-      }
-    </script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb3hUocjT4p9z45iwS-uiHQF6UpUFpSVU&callback=initMap&libraries=&v=weekly"
       defer
@@ -69,7 +64,7 @@
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
       <!-- Page Header Start-->
-      {{-- @include('layouts.light.header')       --}}
+      @include('layouts.light.header')      
       <!-- Page Header Ends -->
       <!-- Page Body Start-->
       <div class="page-body-wrapper sidebar-icon">

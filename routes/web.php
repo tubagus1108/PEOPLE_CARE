@@ -5,6 +5,7 @@ use App\Http\Controllers\ADMIN\DashboardController;
 use App\Http\Controllers\ADMIN\TerritoryController;
 use App\Http\Controllers\ADMIN\RestControlller;
 use App\Http\Controllers\ADMIN\SettingsController;
+use App\Http\Controllers\ADMIN\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,38 @@ use App\Http\Controllers\ADMIN\SettingsController;
 */
 
 Route::namespace('ADMIN')->group(function(){
-    // Dashboard Prefix
-    Route::prefix('/')->group(function(){
-        Route::get('/', [DashboardController::class, 'Dashboard'])->name('my-dashboard');
-    });
+    // Auth 
+    Route::get('/',[AuthController::class, 'showFormLogin'])->name('login');
+    Route::get('/login',[AuthController::class, 'showFormLogin'])->name('login');
+    Route::post('/login',[AuthController::class, 'login']);
+    Route::get('/register',[AuthController::class, 'showFormRegister'])->name('register');
+    Route::post('/register',[AuthController::class, 'register']);
 
-    // Hospitals Prefix
+    Route::group(['middleware' => 'auth'], function () {
+         // Dashboard Prefix
+        Route::prefix('/')->group(function(){
+            Route::get('/', [DashboardController::class, 'dashboard'])->name('my-dashboard');
+        });
+        // Territory Prefix
+        Route::prefix('territory')->group(function(){
+            // PROVINCE
+            Route::get('province', [TerritoryController::class, 'province'])->name('province');
+            Route::get('province-datatable', [TerritoryController::class, 'provinceDatatable'])->name('province-datatable');
+            Route::post('province', [TerritoryController::class, 'province']);
+            Route::get('province-delete/{id}', [TerritoryController::class, 'provinceDelete']);
+            Route::get('/{id}/province-edit', [TerritoryController::class, 'provinceEdit'])->name('provinceEdit');
+            Route::post('province-edit-execute', [TerritoryController::class, 'provinceEditExecute']);
+                
+            
+            // CITY
+            Route::get('city', [TerritoryController::class, 'city'])->name('city');
+            Route::post('city', [TerritoryController::class, 'city']);
+            Route::get('city-datatable', [TerritoryController::class, 'cityDatatable'])->name('city-datatable');
+            Route::get('city-delete/{id}', [TerritoryController::class, 'cityDelete']);
+            Route::get('/{id}/city-edit', [TerritoryController::class, 'cityEdit'])->name('cityEdit');
+            Route::post('city-edit-execute', [TerritoryController::class, 'cityEditExecute']);
+        });
+        // Hospitals Prefix
     Route::prefix('hospital')->group(function(){
         Route::get('hospital-data', [RestControlller::class, 'hospitalData'])->name('hospital');
         Route::get('hospital-datatable', [RestControlller::class, 'hospitalDatatable'])->name('hospital-datatable');
@@ -61,25 +88,6 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('pegawai-firefighters-datatable/{rest_id}', [RestControlller::class, 'pegawaiFirefightersDatatable']);
     });
     
-    // Territory Prefix
-    Route::prefix('territory')->group(function(){
-        // PROVINCE
-        Route::get('province', [TerritoryController::class, 'province'])->name('province');
-        Route::get('province-datatable', [TerritoryController::class, 'provinceDatatable'])->name('province-datatable');
-        Route::post('province', [TerritoryController::class, 'province']);
-        Route::get('province-delete/{id}', [TerritoryController::class, 'provinceDelete']);
-        Route::get('/{id}/province-edit', [TerritoryController::class, 'provinceEdit'])->name('provinceEdit');
-        Route::post('province-edit-execute', [TerritoryController::class, 'provinceEditExecute']);
-            
-        
-        // CITY
-        Route::get('city', [TerritoryController::class, 'city'])->name('city');
-        Route::post('city', [TerritoryController::class, 'city']);
-        Route::get('city-datatable', [TerritoryController::class, 'cityDatatable'])->name('city-datatable');
-        Route::get('city-delete/{id}', [TerritoryController::class, 'cityDelete']);
-        Route::get('/{id}/city-edit', [TerritoryController::class, 'cityEdit'])->name('cityEdit');
-        Route::post('city-edit-execute', [TerritoryController::class, 'cityEditExecute']);
-    });
 
     // SETTINGS
     Route::prefix('settings')->group(function(){
@@ -89,5 +97,9 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('employee-delete/{id}', [SettingsController::class, 'employeeDelete']);
         Route::get('/{id}/employee-edit', [SettingsController::class, 'employeeEdit'])->name('employeeEdit');
         Route::post('employee-edit-execute', [SettingsController::class, 'employeeEditExecute']);
+    });
+
+
+        Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
     });
 });

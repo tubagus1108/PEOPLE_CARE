@@ -48,6 +48,11 @@
                 <li><a href="{{route('employee')}}" class="{{ Route::currentRouteName()=='employee' ? 'active' : '' }}">Employee Position</a></li>
               </ul>
             </li>
+            {{-- LogOut --}}
+            {{-- <li class="dropdown">
+              <a href="{{route('logout')}}" class="nav-link menu-title {{request()->route() == 'logout' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-sign-out" style="font-size:20px;"></i></button><span>Logout</span>     
+              </a>
+            </li> --}}
           </ul>
         </div>
       </div>

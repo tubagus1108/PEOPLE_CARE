@@ -19,7 +19,7 @@ class CreateAdminTable extends Migration
                     $table->string('uid')->default(DB::raw('gen_uuid()'))->primary();
                 else if(config('database.default') == 'mysql')
                     $table->string('uid')->default(DB::raw('uuid()'))->primary();
-                $table->string('national_id');
+                $table->string('national_id')->nullable();
                 $table->string('name');
                 $table->string('username');
                 $table->string('email')->unique();

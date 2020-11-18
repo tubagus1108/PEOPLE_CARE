@@ -1,4 +1,3 @@
-
 <div class="page-main-header">
   <div class="main-header-right row m-0">
     <div class="main-header-left">
@@ -6,7 +5,7 @@
     </div>
     <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="grid" id="sidebar-toggle"></i></div>
     <div class="left-menu-header col">
-      <ul>
+      {{-- <ul>
         <li>
           <form class="form-inline search-form">
             <div class="search-bg"><i class="fa fa-search"></i></div>
@@ -14,7 +13,7 @@
           </form>
           <span class="d-sm-none mobile-search search-bg"><i class="fa fa-search"></i></span>
         </li>
-      </ul>
+      </ul> --}}
     </div>
     <div class="nav-right col pull-right right-menu">
       <ul class="nav-menus">
@@ -87,11 +86,11 @@
             </div>
           </div>
           <ul class="profile-dropdown onhover-show-div">
-            <li onclick="document.location.href=''"><i data-feather="user"></i><span>Account </span></li>
+            {{-- <li onclick="document.location.href=''"><i data-feather="user"></i><span>Account </span></li>
             <li><i data-feather="mail"></i><span>Inbox</span></li>
             <li><i data-feather="file-text"></i><span>Taskboard</span></li>
-            <li><i data-feather="settings"></i><span>Settings</span></li>
-            <li onclick="document.location.href=''"><i data-feather="log-in"> </i><span>Log Out</span></li>
+            <li><i data-feather="settings"></i><span>Settings</span></li> --}}
+            <li onclick="document.location.href='{{route('logout')}}'"><i data-feather="log-in"> </i><span>Log Out</span></li>
           </ul>
         </li>
       </ul>

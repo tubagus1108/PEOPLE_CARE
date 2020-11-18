@@ -10,6 +10,8 @@ use App\Models\Admin\Employee;
 use App\Models\Admin\Settings;
 use Datatables;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 use function PHPSTORM_META\type;
 
@@ -121,10 +123,21 @@ class RestControlller extends Controller
             return view('hospital.detail-hospital',compact('data', 'employee'));
         else{
             $data = Employee::find($id);
-            $insert = Employee::create($request->all());
-            if($insert)
+            $employee = new Employee();
+            $employee->rest_id = ($request->rest_id);
+            $employee->position_id = ($request->position_id);
+            $employee->name = ucwords(strtolower($request->name));
+            $employee->username = ucwords(strtolower($request->username));
+            $employee->email = strtolower($request->email);
+            $employee->password = Hash::make($request->password);
+            $employee->phone = ($request->phone);
+            $simpan = $employee->save();
+     
+            if($simpan){
                 return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('success', 'Success stored new hospital Pegawai');
-            return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('failed', 'failed stored new hospital Pegawai');
+            } else {
+                return redirect(url('hospital/{id}/hospital-add-pegawai'))->with('failed', 'failed stored new hospital Pegawai');
+            }
         }
     }
     public function employeeHospitalDelete($uid){
