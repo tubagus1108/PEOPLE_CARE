@@ -35,7 +35,6 @@
             </div>
         </div>
     </div>
-    
     {{-- Modal Add New Hospital --}}
     <div class="modal fade" id="addHospital" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

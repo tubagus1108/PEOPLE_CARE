@@ -57,6 +57,7 @@ class AuthController extends Controller
         }
  
     }
+    // REGISTER
     public function showFormRegister()
     {
         if (Auth::check()) { 
