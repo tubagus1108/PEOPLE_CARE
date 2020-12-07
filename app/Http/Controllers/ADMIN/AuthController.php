@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     public function showFormLogin (){
-        if (Auth::check()) { 
-            
+        if (Auth::check()) {
+
             return redirect()->route('my-dashboard');
         }
         return view('auth.login');
@@ -25,42 +25,42 @@ class AuthController extends Controller
             'email'                 => 'required|email',
             'password'              => 'required|string'
         ];
- 
+
         $messages = [
             'email.required'        => 'Email is required',
             'email.email'           => 'Invalid email',
             'password.required'     => 'Password is required',
             'password.string'       => 'The password must be a string'
         ];
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
- 
+
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
- 
+
         $data = [
             'email'  => $request->input('email'),
             'password'  => $request->input('password'),
         ];
- 
+
         Auth::attempt($data);
- 
+
         if (Auth::check()) {
             return redirect()->route('my-dashboard');
- 
+
         } else { // false
- 
+
             //Login Fail
             Session::flash('error', 'Incorrect email or password');
             return redirect()->route('login');
         }
- 
+
     }
     // REGISTER
     public function showFormRegister()
     {
-        if (Auth::check()) { 
+        if (Auth::check()) {
             return redirect()->route('my-dashboard');
         }
         return view('auth.register');
@@ -72,7 +72,7 @@ class AuthController extends Controller
             'email'                 => 'required|email|unique:admin,email',
             'password'              => 'required|confirmed'
         ];
- 
+
         $messages = [
             'name.required'         => 'Full name is required',
             'name.min'              => 'Full name of at least 3 characters',
@@ -83,21 +83,22 @@ class AuthController extends Controller
             'password.required'     => 'Password is required',
             'password.confirmed'    => 'Password is not the same as confirmation password'
         ];
- 
+
         $validator = Validator::make($request->all(), $rules, $messages);
- 
+
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
- 
+
         $admin = new Admin;
         $admin->name = ucwords(strtolower($request->name));
         $admin->username = ucwords(strtolower($request->username));
         $admin->email = strtolower($request->email);
         $admin->password = Hash::make($request->password);
         $admin->phone = ($request->phone);
+        $admin->national_id = '-';
         $simpan = $admin->save();
- 
+
         if($simpan){
             Session::flash('success', 'Register successful! Please login to access data');
             return redirect()->route('login');
@@ -108,7 +109,7 @@ class AuthController extends Controller
     }
     public function logout()
     {
-        Auth::logout(); 
+        Auth::logout();
         return redirect(route('login'))->with('success', 'Success logout');
     }
 
