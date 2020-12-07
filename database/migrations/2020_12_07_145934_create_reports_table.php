@@ -22,6 +22,8 @@ class CreateReportsTable extends Migration
             $table->integer('report_type'); // 1 . Self Report  2 . Other People  3 . Panic Button
             $table->text('description')->nullable();
             $table->string('prove_images1')->nullable();
+            $table->dateTime('is_accepted')->nullable();
+            $table->text('why_rejected')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
