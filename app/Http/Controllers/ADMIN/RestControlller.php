@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Hospital;
 use App\Models\Admin\Employee;
 use App\Models\Admin\Settings;
-use Datatables;
+use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;

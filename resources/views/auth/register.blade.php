@@ -44,7 +44,7 @@
                                             @endif
                                             <div class="uk-margin">
                                                 <div class="uk-position-relative">
-                                                    <span class="uk-form-icon ion-users"></span>
+                                                    <span class="uk-form-icon ion-android-person"></span>
                                                     <input name="name" class="uk-input" type="text" placeholder="Name">
                                                 </div>
                                             </div>
@@ -110,5 +110,6 @@
             </div>
         </div>
         <script src="js/script.js"></script>
+        <script src="uikit/dist/js/uikit-icons.min.js"></script>
     </body>
 </html>

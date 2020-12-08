@@ -48,11 +48,17 @@
                 <li><a href="{{route('employee')}}" class="{{ Route::currentRouteName()=='employee' ? 'active' : '' }}">Employee Position</a></li>
               </ul>
             </li>
-            {{-- LogOut --}}
-            {{-- <li class="dropdown">
-              <a href="{{route('logout')}}" class="nav-link menu-title {{request()->route() == 'logout' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-sign-out" style="font-size:20px;"></i></button><span>Logout</span>     
+            {{-- People Report --}}
+            <li class="dropdown">
+              <a class="nav-link menu-title {{request()->route()->getPrefix() == '/reports' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-folder" style="font-size:20px;"></i></button><span>Reports </span>
+                  <div class="according-menu"></div>
               </a>
-            </li> --}}
+              <ul class="nav-submenu menu-content" style="display: {{ request()->route()->getPrefix() == '/settings' ? 'block;' : 'none;' }}">
+                <li><a href="{{route('peoplereports')}}" class="{{ Route::currentRouteName()=='peoplereports' ? 'active' : '' }}">People Reports</a></li>
+                <li><a href="{{route('peoplemembers')}}" class="{{ Route::currentRouteName()=='peoplemembers' ? 'active' : '' }}">People Data</a></li>
+              </ul>
+              
+            </li>
           </ul>
         </div>
       </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\ADMIN\TerritoryController;
 use App\Http\Controllers\ADMIN\RestControlller;
 use App\Http\Controllers\ADMIN\SettingsController;
 use App\Http\Controllers\ADMIN\AuthController;
+use App\Http\Controllers\Admin\ReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,13 @@ Route::namespace('ADMIN')->group(function(){
     });
 
 
-        Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+    Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+    });
+    // REPORTS PEOPLE
+    Route::prefix('reports')->group(function(){
+        Route::get('/people-report',[ReportsController::class, 'peoplereports'])->name('peoplereports');
+        Route::get('reports-datatable',[ReportsController::class, 'reportsdatatable'])->name('reports-datatable');
+        Route::get('/people-members',[ReportsController::class, 'peoplemembers'])->name('peoplemembers');
+        Route::get('members-datatable',[ReportsController::class, 'membersdatatable'])->name('members-datatable');
     });
 });

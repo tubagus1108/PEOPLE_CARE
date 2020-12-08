@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">Choose Pegawi : </label>
+                    <label for="">Choose Department : </label>
                     <select name="position_id" id="" class="form-control">
                         <option value="" hidden>Choose Employee</option>
                         @foreach ($employee as $item)
