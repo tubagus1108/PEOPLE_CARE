@@ -25,6 +25,7 @@ class CreateMembersTable extends Migration
             $table->string('last_name');
             $table->string('idcard_image');
             $table->string('selfie_idcard_image');
+            $table->dateTime('accepted')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
