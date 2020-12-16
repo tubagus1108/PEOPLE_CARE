@@ -11,7 +11,6 @@
     @if (session('success'))
         <div class="row pb-4">
             <div class="col-12">
-
             </div>
         </div>
     @endif
@@ -22,13 +21,11 @@
                     <tr class="text-center">
                         <th>#</th>
                         <th>National_ID</th>
-                        <th>Province_ID</th>
-                        <th>City_ID</th>
                         <th>FirshName</th>
                         <th>LastName</th>
-                        <th>IDCard_Images</th>
-                        <th>Selfi_Images</th>
                         <th>Created_at</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>  
@@ -38,22 +35,20 @@
 @endsection
 @section('script')
 <script>
-    $(function(){
-        $('#members-datatable').DataTable({
-            ajax: '{{route('members-datatable')}}',
-            columns:[
-                { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'national_id', name: 'national_id'},
-                { data: 'province_id', name: 'province_id'},
-                { data: 'city_id', name: 'city_id'},
-                { data: 'first_name', name: 'first_name'},
-                { data: 'last_name', name: 'last_name'},
-                { data: 'idcard_image', name: 'idcard_image'},
-                { data: 'selfie_idcard_image', name: 'selfie_idcard_image'},
-                { data: 'created_at', name: 'created_at'},
+   $(function(){
+            $('#members-datatable').DataTable({
+                ajax: '{{route('members-datatable')}}',
+                columns:[
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                    { data: 'national_id', name: 'national_id' },
+                    { data: 'first_name', name: 'first_name' },
+                    { data: 'last_name', name: 'last_name' },
+                    { data: 'created_at', name: 'created_at' },
+                    { data: 'status', name: 'status' },
+                    { data: 'action', name: 'action'},
 
-            ],
-        })
-    });
+                ],
+            })
+        });
 </script>
 @endsection

@@ -10,4 +10,8 @@ class Province extends Model
     use HasFactory;
     protected $table = "province";
     protected $guarded = [];
+    public function members(){
+        return $this->hasMany(PeopleMembers::class);
+    }
 }
+

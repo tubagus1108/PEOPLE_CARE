@@ -105,9 +105,11 @@ Route::namespace('ADMIN')->group(function(){
     });
     // REPORTS PEOPLE
     Route::prefix('reports')->group(function(){
-        Route::get('/people-report',[ReportsController::class, 'peoplereports'])->name('peoplereports');
+        Route::get('people-report',[ReportsController::class, 'peoplereports'])->name('peoplereports');
         Route::get('reports-datatable',[ReportsController::class, 'reportsdatatable'])->name('reports-datatable');
-        Route::get('/people-members',[ReportsController::class, 'peoplemembers'])->name('peoplemembers');
+        Route::get('people-members',[ReportsController::class, 'peoplemembers'])->name('peoplemembers');
         Route::get('members-datatable',[ReportsController::class, 'membersdatatable'])->name('members-datatable');
+        Route::get('/{uid}/details-members',[ReportsController::class, 'detailsmembers'])->name('details-members');
+        Route::post('/{uid}/accepted',[ReportsController::class, 'accepted']);
     });
 });

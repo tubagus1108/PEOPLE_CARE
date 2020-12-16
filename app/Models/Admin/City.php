@@ -10,4 +10,7 @@ class City extends Model
     use HasFactory;
     protected $table = "city";
     protected $guarded = [];
+    public function post(){
+        return $this->belongsToMany(PeopleMembers::class);
+    }
 }
