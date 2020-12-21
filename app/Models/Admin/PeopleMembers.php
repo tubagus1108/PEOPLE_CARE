@@ -12,11 +12,22 @@ class PeopleMembers extends Model
     protected $primaryKey = "uid";
     public $incrementing = false;
     protected $guarded = [];
-    public function city(){
-        return $this->belongsToMany(City::class);
-    }
+    protected $appends = ['province_name','city_name'];
+
+    // Province Relation
     public function province(){
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Province::class, 'province_id', 'id');
+    }
+    public function getProvinceNameAttribute(){
+        return $this->province->name ?? '-';
+    }
+
+    // City Relation
+    public function city(){
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+    public function getCityNameAttribute(){
+        return $this->city->name ?? '-';
     }
 }
 
