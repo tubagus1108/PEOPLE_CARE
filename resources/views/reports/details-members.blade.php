@@ -30,9 +30,25 @@
                                 <div class="col-6">
                                     <button class="btn btn-block btn-primary">ACCEPT</button>
                                 </div>
-                                <div class="col-6">
-                                    <button class="btn btn-block btn-danger">REJECT</button>
-                                </div>
+                                @if ($data['pending'] == null) 
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#message">REJECT</button>
+                                @else
+                                    <div class="col-12 mt-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="alert alert-danger">
+                                                    <i class="fa fa-warning"></i>
+                                                    <span class="ml-2">This member has rejected !</span>
+                                                </div>
+                                                <h5 class="card-title">Message Rejected!!</h5>
+                                                <hr>
+                                                <i class="fa fa-inbox"></i>
+                                                <span class="card-text">{{$data['rejection_reason']}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                
                             @else
                                 <div class="col-12">
                                     <div class="alert alert-success">
@@ -63,8 +79,33 @@
                             @endif
                         </div>
                     </div>
+                    
                 </div>
             </form>
+        </div>
+    </div>
+    {{-- Modal Messege --}}
+    <div class="modal fade" id="message" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <form action="{{url('reports/'.$data['uid'].'/pending')}}" method="POST">@csrf
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <input type="text" name="rejection_reason" id="rejection_reason" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

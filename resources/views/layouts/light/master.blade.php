@@ -16,7 +16,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb3hUocjT4p9z45iwS-uiHQF6UpUFpSVU&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
-    <title>KitaKitaDevs - @yield('title')</title>
+    <title>People-Care - @yield('title')</title>
     @include('layouts.light.css')
     <style type="text/css">
       /* Set the size of the div element that contains the map */

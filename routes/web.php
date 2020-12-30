@@ -7,6 +7,7 @@ use App\Http\Controllers\ADMIN\RestControlller;
 use App\Http\Controllers\ADMIN\SettingsController;
 use App\Http\Controllers\ADMIN\AuthController;
 use App\Http\Controllers\Admin\ReportsController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,5 +112,7 @@ Route::namespace('ADMIN')->group(function(){
         Route::get('members-datatable',[ReportsController::class, 'membersdatatable'])->name('members-datatable');
         Route::get('/{uid}/details-members',[ReportsController::class, 'detailsmembers'])->name('details-members');
         Route::post('/{uid}/accepted',[ReportsController::class, 'accepted']);
+        Route::post('/{uid}/pending',[ReportsController::class, 'pending']);
+        Route::get('/{uid}/members-delete', [ReportsController::class, 'membersDelete']);
     });
 });
