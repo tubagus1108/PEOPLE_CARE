@@ -8,6 +8,7 @@ use App\Models\Admin\Settings;
 use App\Models\Admin\Hospital;
 use App\Models\Admin\AdminLog;
 use App\Models\Admin\Firefighters;
+use App\Models\Admin;
 use Datatables;
 use Carbon\Carbon;
 
