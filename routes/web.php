@@ -27,6 +27,7 @@ Route::namespace('ADMIN')->group(function(){
     Route::post('/login',[AuthController::class, 'login']);
     Route::get('/register',[AuthController::class, 'showFormRegister'])->name('register');
     Route::post('/register',[AuthController::class, 'register']);
+    
 
     Route::group(['middleware' => 'auth'], function () {
          // Dashboard Prefix

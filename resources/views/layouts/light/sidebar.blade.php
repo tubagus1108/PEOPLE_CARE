@@ -24,7 +24,7 @@
 
             {{-- Firefighters --}}
             <li class="dropdown">
-              <a href="{{route('firefighters')}}" class="nav-link menu-title {{request()->route()->getPrefix() == 'firefighters' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-fire-extinguisher" style="font-size:20px;"></i></button><span>Firefighter</span>     
+              <a href="{{route('firefighters')}}" class="nav-link menu-title {{request()->route()->getPrefix() == '/firefighters' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-fire-extinguisher" style="font-size:20px;"></i></button><span>Firefighter</span>     
               </a>
             </li>
 
@@ -53,7 +53,7 @@
               <a class="nav-link menu-title {{request()->route()->getPrefix() == '/reports' ? 'active' : '' }}" href="#"><button class="btn p-0 mr-2" style="background: none; width:30px; text-align:left; !important; border:none;"><i class="fa fa-folder" style="font-size:20px;"></i></button><span>Reports </span>
                   <div class="according-menu"></div>
               </a>
-              <ul class="nav-submenu menu-content" style="display: {{ request()->route()->getPrefix() == '/settings' ? 'block;' : 'none;' }}">
+              <ul class="nav-submenu menu-content" style="display: {{ request()->route()->getPrefix() == '/reports' ? 'block;' : 'none;' }}">
                 <li><a href="{{route('peoplereports')}}" class="{{ Route::currentRouteName()=='peoplereports' ? 'active' : '' }}">People Reports</a></li>
                 <li><a href="{{route('peoplemembers')}}" class="{{ Route::currentRouteName()=='peoplemembers' ? 'active' : '' }}">People Data</a></li>
               </ul>
