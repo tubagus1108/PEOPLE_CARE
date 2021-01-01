@@ -86,8 +86,8 @@
             </div>
           </div>
           <ul class="profile-dropdown onhover-show-div">
-            {{-- <li onclick="document.location.href=''"><i data-feather="user"></i><span>Account </span></li>
-            <li><i data-feather="mail"></i><span>Inbox</span></li>
+            <li onclick="document.location.href=''"><i data-feather="user"></i><span>Account </span></li>
+            {{-- <li><i data-feather="mail"></i><span>Inbox</span></li>
             <li><i data-feather="file-text"></i><span>Taskboard</span></li>
             <li><i data-feather="settings"></i><span>Settings</span></li> --}}
             <li onclick="document.location.href='{{route('logout')}}'"><i data-feather="log-in"> </i><span>Log Out</span></li>
