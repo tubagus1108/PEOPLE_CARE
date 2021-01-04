@@ -6,38 +6,37 @@
         <h4>{{$data['name']}} Settings</h4>
         <span>You can Settings hospital date right here !</span>
     </div>
-    <div class="card-body">
-        @if(session('success'))
-            <div class="row pb-4">
-                <div class="col-12">
-                    <div class="alert alert-success outline alert-dismissible fade show" role="alert"><i data-feather="thumbs-up"></i>
-                        <p>{{session('success')}}</p>
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    </div>
+</div>
+<div class="card-body">
+    @if(session('success'))
+        <div class="row pb-4">
+            <div class="col-12">
+                <div class="alert alert-success outline alert-dismissible fade show" role="alert"><i data-feather="thumbs-up"></i>
+                    <p>{{session('success')}}</p>
+                    <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
             </div>
-        @endif
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <div class="col">
-                    <button type="button" class="btn btn-primary p-2" data-toggle="modal" data-target="#addpegawai"><i class="fa fa-plus"></i> Add Pegawai</button>
-                    <button type="button" class="btn btn-danger p-2" data-toggle="modal" data-target="#showHospital"><i class="fa fa-eye"></i> Information Hospital</button>
-                    
-                </div>    
-                <table class="table table-bordered data-table" id="data-employee">
-                    <thead>
-                        <tr class="text-center">
-                            <th width="50">#</th>
-                            <th>Name</th>
-                            <th>Username</th>
-                            <th>Phone</th>
-                            <th width="10px">Email</th>
-                            <th>Created At</th>
-                            <th width="100px">Action</th>
-                        </tr>
-                    </thead>
-                </table>           
-            </div>
+        </div>
+    @endif
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="col">
+                <button type="button" class="btn btn-primary p-2" data-toggle="modal" data-target="#addpegawai"><i class="fa fa-plus"></i> Add Pegawai</button>
+                <button type="button" class="btn btn-danger p-2" data-toggle="modal" data-target="#showHospital"><i class="fa fa-eye"></i> Information Hospital</button>             
+            </div>    
+            <table class="table table-bordered data-table" id="data-employee">
+                <thead>
+                    <tr class="text-center">
+                        <th width="50">#</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Phone</th>
+                        <th width="10px">Email</th>
+                        <th>Created At</th>
+                        <th width="100px">Action</th>
+                    </tr>
+                </thead>
+            </table>           
         </div>
     </div>
 </div>

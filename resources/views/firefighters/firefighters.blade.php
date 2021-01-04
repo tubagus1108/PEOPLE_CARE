@@ -6,33 +6,33 @@
         <h4>Firefighters Data</h4>
         <span>You can manage firefighters date right here !</span>
     </div>
-    <div class="card-body">
-        @if(session('success'))
-        <div class="row pb-4">
-            <div class="col-12">
-                <div class="alert alert-success outline alert-dismissible fade show" role="alert"><i data-feather="thumbs-up"></i>
-                    <p>{{session('success')}}</p>
-                    <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
+</div>
+<div class="card-body">
+    @if(session('success'))
+    <div class="row pb-4">
+        <div class="col-12">
+            <div class="alert alert-success outline alert-dismissible fade show" role="alert"><i data-feather="thumbs-up"></i>
+                <p>{{session('success')}}</p>
+                <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
         </div>
-        @endif
-        <div class="row">     
-            <div class="col-md-12 col-lg-12">  
-                <button class="btn btn-info" data-toggle="modal" data-target="#addFirefighters"><i class="fa fa-plus"></i> Add New</button>      
-                <table class="table table-striped data-table" id="data-firefighters">
-                    <thead>
-                        <tr class="text-center">
-                            <th width="50">#</th>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th width="50px">Created At</th>
-                            <th width="100px">Action</th>
-                        </tr>
-                    </thead>
-                </table>   
-            </div>         
-        </div>
+    </div>
+    @endif
+    <div class="row">     
+        <div class="col-md-12 col-lg-12">  
+            <button class="btn btn-info" data-toggle="modal" data-target="#addFirefighters"><i class="fa fa-plus"></i> Add New</button>      
+            <table class="table table-striped data-table" id="data-firefighters">
+                <thead>
+                    <tr class="text-center">
+                        <th width="50">#</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th width="50px">Created At</th>
+                        <th width="100px">Action</th>
+                    </tr>
+                </thead>
+            </table>   
+        </div>         
     </div>
 </div>
     {{-- Modal Add New Hospital --}}

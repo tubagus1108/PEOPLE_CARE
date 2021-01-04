@@ -1,101 +1,82 @@
 @extends('layouts.light.master')
 @section('title', 'Dashboard')
 @section('content')
-<!-- Card stats -->
-    <div class="row">
-        {{-- Card User --}}
-        <div class="col-xl-3 col-md-6">
-            <div class="card card-stats mt-4">
-                <div class="card-body mb-0">
-                    <div class="row">
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-stats mt-4">
+            <div class="card-body mb-0 bg-info">
+                <div class="row">
                     <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mt-0.1">Member</h5>
-                        <span class="h3 font-weight-bold mb-0">{{ $jumlah_members }}</span>
+                        <h5>Member</h5>
+                        <p class="dashboard">{{ $jumlah_members }}</p>
                     </div>
                     <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                        <i class="ni ni-circle-08"></i>
+                        <div class="icon icon-shape rounded-circle">
+                        <i class="fa fa-user"></i>
                         </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- Report Diri Sendiri --}}
-        <div class="col-xl-3 col-md-6">
-            <div class="card card-stats mt-4">
-            <!-- Card body -->
-                <div class="card-body mb-0">
-                    <div class="row">
-                    <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mt-0.09">Self Report</h5>
-                        <span class="h2 font-weight-bold mb-0">
-                            {{$self_report}}
-                        </span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                        <i class="fa fa-exclamation-circle"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- Report Orang Lain --}}
-        <div class="col-xl-3 col-md-6">
-            <div class="card card-stats mt-4">
-            <!-- Card body -->
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">others report</h5>
-                        <span class="h2 font-weight-bold mb-0">
-                            {{$other_report}}
-                        </span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                        <i class="fa fa-exclamation-circle"></i>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- Report Panic Button --}}
-        <div class="col-xl-3 col-md-6">
-            <div class="card card-stats mt-4">
-            <!-- Card body -->
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-3.5">Panic Button</h5>
-                        <span class="h2 font-weight-bold mb-0">{{$panic_button}}</span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                        <i class="fa fa-exclamation-circle"></i>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div id="pengaduan"></div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-stats mt-4">
+            <div class="card-body mb-0 bg-danger">
+                <div class="row">
+                    <div class="col">
+                        <h5>Self report</h5>
+                        <p class="dashboard">{{ $self_report }}</p>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape rounded-circle">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div> 
-    {{-- <div class="row mt-5">
-        <div class="col-lg-6">
-            <div id="province"></div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-stats mt-4">
+            <div class="card-body bg-danger">
+                <div class="row">
+                    <div class="col">
+                        <h5 style="font-size: 17.8px">Other report</h5>
+                        <p class="dashboard">{{ $other_report }}</p>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape rounded-circle">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <div id="city"></div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card card-stats mt-4">
+            <div class="card-body mb-0 bg-danger">
+                <div class="row">
+                    <div class="col">
+                        <h5 style="font-size: 16.4px">Panic button</h5>
+                        <p class="dashboard">{{$panic_button}}</p>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape rounded-circle">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div> --}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="pengaduan"></div>
+    </div>
+</div> 
 @endsection
 @section('dashboardcharts')
     <script src="https://code.highcharts.com/highcharts.js"></script>

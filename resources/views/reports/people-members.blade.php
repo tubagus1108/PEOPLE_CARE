@@ -48,6 +48,12 @@
                     { data: 'action', name: 'action'},
 
                 ],
+                columnDefs:[
+                    {
+                        "targets" : [0,1,4,5],
+                        "className": "text-center"
+                    },
+                ],     
             })
         });
 </script>

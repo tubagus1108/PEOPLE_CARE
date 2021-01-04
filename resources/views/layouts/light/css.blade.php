@@ -34,9 +34,3 @@
 <!--JSGrid css-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatables.css')}}" />
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/datatable-extension.css')}}">
-<link rel="stylesheet" href="{{asset('assetslogin/vendor/nucleo/css/nucleo.css')}}" type="text/css">
-  <!-- Favicon -->
-  <link rel="stylesheet" type="text/css" href="{{asset('assetslogin/img/brand/favicon.png')}}">
-  
-  <!-- Argon CSS -->
-  <link rel="stylesheet" href="{{asset('assetslogin/css/argon.css?v=1.2.0')}}" type="text/css">
