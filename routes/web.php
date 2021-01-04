@@ -6,7 +6,7 @@ use App\Http\Controllers\ADMIN\TerritoryController;
 use App\Http\Controllers\ADMIN\RestControlller;
 use App\Http\Controllers\ADMIN\SettingsController;
 use App\Http\Controllers\ADMIN\AuthController;
-use App\Http\Controllers\Admin\ReportsController;
+use App\Http\Controllers\ADMIN\ReportsController;
 use Illuminate\Support\Facades\Auth;
 
 /*
