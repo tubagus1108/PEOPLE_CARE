@@ -1,5 +1,5 @@
 <header class="main-nav">
-    <div class="logo-wrapper"><a href="{{route('my-dashboard')}}"><img class="img-fluid" src="{{asset('assets/images/logo/logo.png')}}" alt=""></a></div>
+    <div class="logo-wrapper"><a href="{{route('my-dashboard')}}">PEOPLE CARE</div>
     <div class="logo-icon-wrapper"><a href="{{route('my-dashboard')}}"><img class="img-fluid" src="{{asset('assets/images/logo/logo-icon.png')}}" alt=""></a></div>
     <nav>
       <div class="main-navbar">

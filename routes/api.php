@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\TerritoryController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,13 @@ use App\Http\Controllers\API\TerritoryController;
 
 Route::namespace('API')->group(function(){
     Route::post('admin-login', [AdminController::class, 'AdminLogin']);
+    Route::post('user-login', [UserController::class, 'login']);
+    Route::post('user-register',[UserController::class, 'register']);
     Route::middleware('auth:api')->group(function(){
         // Register Territory
         Route::prefix('territory')->group(function(){
             Route::post('province-regist', [TerritoryController::class, 'ProvinceRegist']);
         });
+        // Route::post('details', [UserController::class, 'details']);
     });
 });

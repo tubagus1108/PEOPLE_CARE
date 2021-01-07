@@ -21,8 +21,7 @@
                     <tr class="text-center">
                         <th>#</th>
                         <th>National_ID</th>
-                        <th>FirshName</th>
-                        <th>LastName</th>
+                        <th>Full_Name</th>
                         <th>Created_at</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -41,8 +40,7 @@
                 columns:[
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                     { data: 'national_id', name: 'national_id' },
-                    { data: 'first_name', name: 'first_name' },
-                    { data: 'last_name', name: 'last_name' },
+                    { data: 'full_name', name: 'full_name' },
                     { data: 'created_at', name: 'created_at' },
                     { data: 'status', name: 'status' },
                     { data: 'action', name: 'action'},

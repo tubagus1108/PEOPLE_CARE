@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="card-body">
-            <h4>Information for <b class="bg-info text-white pl-3 pr-3">{{$data['first_name']}}</b></h4></h4>
+            <h4>Information for <b class="bg-info text-white pl-3 pr-3">{{$data['full_name']}}</b></h4></h4>
             <span>You can do management of this member!</span>
             <form action="{{url('reports/'.$data['uid'].'/accepted')}}" method="POST">@csrf
                 <div class="row mt-4">
