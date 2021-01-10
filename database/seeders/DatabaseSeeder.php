@@ -50,17 +50,17 @@ class DatabaseSeeder extends Seeder
         }
 
         // Create Dummy Data for People
-        $people = ['Pelapor 1', 'Pelapor 2'];
-        for($i=0; $i<count($people); $i++){
-            DB::table('members')->insert([
-                'national_id' => '00000'.strval($i),
-                'province_id' => $i,
-                'city_id' => $i,
-                'first_name' => $people[$i],
-                'last_name' => '-',
-                'idcard_image' => '-',
-                'selfie_idcard_image' => '-',
-            ]);
-        }
+        // $people = ['Pelapor 1', 'Pelapor 2'];
+        // for($i=0; $i<count($people); $i++){
+        //     DB::table('members')->insert([
+        //         'national_id' => '00000'.strval($i),
+        //         'province_id' => $i,
+        //         'city_id' => $i,
+        //         'first_name' => $people[$i],
+        //         'last_name' => '-',
+        //         'idcard_image' => '-',
+        //         'selfie_idcard_image' => '-',
+        //     ]);
+        // }
     }
 }
