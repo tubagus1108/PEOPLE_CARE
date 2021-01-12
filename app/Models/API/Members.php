@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\HasApiTokens;
 
-class Members extends Model
+class Members extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
     protected $table = "members";

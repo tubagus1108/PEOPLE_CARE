@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\PeopleMembers;
+use App\Models\API\Members;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -14,7 +15,7 @@ class UserController extends Controller
 {
 
     public function login(Request $request){
-        $user = PeopleMembers::where('email',$request->email)->first();
+        $user = Members::where('email',$request->email)->first();
         if($user){
             if(Hash::check($request->password, $user->password)){
                 $data['token'] = $user->createToken('nApp')->accessToken;
