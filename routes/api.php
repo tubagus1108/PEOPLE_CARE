@@ -26,6 +26,10 @@ Route::namespace('API')->group(function(){
         Route::prefix('territory')->group(function(){
             Route::post('province-regist', [TerritoryController::class, 'ProvinceRegist']);
         });
-        // Route::post('details', [UserController::class, 'details']);
+
+        // Member Prefix
+        Route::prefix('members')->group(function(){
+            Route::post('member-detail', [MemberController::class, 'MemberDetail']);
+        });
     });
 });
