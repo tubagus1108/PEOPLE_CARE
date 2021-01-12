@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\TerritoryController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\MemberController;
 
 /*
 |--------------------------------------------------------------------------
