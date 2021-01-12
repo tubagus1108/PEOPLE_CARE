@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Members extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, HasApiTokens;
     protected $table = "members";
     protected $primaryKey = "uid";
     public $incrementing = false;
