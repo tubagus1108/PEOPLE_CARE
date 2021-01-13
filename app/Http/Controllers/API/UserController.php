@@ -20,6 +20,9 @@ class UserController extends Controller
             if(Hash::check($request->password, $user->password)){
                 $data['token'] = $user->createToken('nApp')->accessToken;
                 $data['uid'] = $user->uid;
+                $data['name'] = $user->fullname;
+                $data['email'] = $user->email;
+                $data['national_id'] = $user->national_id;
                 return response()->json(['error' => false, 'message' => 'Login success !', 'data' => $data], 200);
             }
             return response()->json(['error' => true, 'message' => 'Password is wrong'], 401);
