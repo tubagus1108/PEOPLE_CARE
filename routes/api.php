@@ -22,6 +22,9 @@ Route::namespace('API')->group(function(){
     Route::post('admin-login', [AdminController::class, 'AdminLogin']);
     Route::post('user-login', [UserController::class, 'login']);
     Route::post('user-register',[UserController::class, 'register']);
+
+    // Testing
+    Route::get('adds', [MemberController::class, 'adds']);
     Route::middleware('auth:api')->group(function(){
         // Register Territory
         Route::prefix('territory')->group(function(){

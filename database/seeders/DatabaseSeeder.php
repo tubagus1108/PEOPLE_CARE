@@ -62,5 +62,15 @@ class DatabaseSeeder extends Seeder
         //         'selfie_idcard_image' => '-',
         //     ]);
         // }
+
+        // Dummy Adds
+        $title = ['Protokol Covid Terbaru', 'Makanan Bergizi Kuatkan Imun'];
+        $des = ['Pemerintah menerapkan aturan baru untuk protokol kesehatan', 'Warga dihimbau untuk mengkonsumsi makanan bergizi hindari covid'];
+        for($i=0; $i<count($title); $i++){
+            DB::table('adds')->insert([
+                'title' => $title[$i],
+                'description' => $des[$i],
+            ]);
+        }
     }
 }
