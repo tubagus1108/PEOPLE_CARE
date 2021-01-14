@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Adds extends Model
 {
-    use HasFactory, HasApiTokens;
+    use HasFactory;
     protected $table = "adds";
     protected $guarded = [];
 }
