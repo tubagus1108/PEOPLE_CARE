@@ -6,6 +6,8 @@ use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\TerritoryController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\MemberController;
+use App\Http\Controllers\API\DeaseseController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +26,11 @@ Route::namespace('API')->group(function(){
     Route::post('user-register',[UserController::class, 'register']);
     Route::prefix('territory')->group(function(){
         Route::post('province-detail', [TerritoryController::class, 'ProvinceDetail']);
-        Route::post('city-detail', [TerritoryController::class, 'getCityBasedOnProvince']);
+        Route::post('city-detail/{province_id}', [TerritoryController::class, 'getCityBasedOnProvince']);
     });
+    // Route Peyakit
+    Route::post('deasese-data', [DeaseseController::class, 'getalldata']);
+    Route::post('deasese-create',[DeaseseController::class, 'CreateDeasese']);
 
     // Testing
     Route::get('adds', [MemberController::class, 'adds']);

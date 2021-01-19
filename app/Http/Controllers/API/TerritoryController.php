@@ -17,8 +17,8 @@ class TerritoryController extends Controller
             return response()->json(['error' => false, 'message' => 'Data found', 'data' => $data], 200);
         return response()->json(['error' => true, 'message' => 'Data not found', 'data' => $data], 401);   
     }
-    public function getCityBasedOnProvince(Request $request){
-        $data = City::where('province_id', $request->province_id)->all();
+    public function CityDetail(Request $request){
+        $data = City::where('province_id', $request->province_id);
         if($data)
             return response()->json(['error' => false, 'message' => 'Data found', 'data' =>$data],200);
         return response()->json(['error' => false, 'message' => 'Data not found', 'data' =>$data],401);
