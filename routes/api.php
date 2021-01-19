@@ -22,14 +22,18 @@ Route::namespace('API')->group(function(){
     Route::post('admin-login', [AdminController::class, 'AdminLogin']);
     Route::post('user-login', [UserController::class, 'login']);
     Route::post('user-register',[UserController::class, 'register']);
+    Route::prefix('territory')->group(function(){
+        Route::post('province-detail', [TerritoryController::class, 'ProvinceDetail']);
+        Route::post('city-detail', [TerritoryController::class, 'getCityBasedOnProvince']);
+    });
 
     // Testing
     Route::get('adds', [MemberController::class, 'adds']);
+    Route::post('adds/add', [MemberController::class, 'addsCreate']);
+    Route::post('adds/update/{id}', [MemberController::class, 'addsUpdate']);
+    Route::delete('adds/delete/{id}',[MemberController::class,'addsDelete']);
     Route::middleware('auth:api')->group(function(){
         // Register Territory
-        Route::prefix('territory')->group(function(){
-            Route::post('province-regist', [TerritoryController::class, 'ProvinceRegist']);
-        });
 
         // Member Prefix
         Route::prefix('members')->group(function(){

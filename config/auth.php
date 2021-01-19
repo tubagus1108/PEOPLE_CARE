@@ -38,8 +38,13 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admin',
         ],
+
+        // 'admin' => [
+        //     'driver' => 'session',
+        //     'provider' => 'admin',
+        // ],
 
         'api' => [
             'driver' => 'passport',
@@ -47,6 +52,7 @@ return [
             'hash' => false,
         ],
     ],
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -75,6 +81,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
     ],
 
     /*

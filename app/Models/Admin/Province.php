@@ -13,5 +13,8 @@ class Province extends Model
     public function members(){
         return $this->hasMany(PeopleMembers::class);
     }
+    public function city(){
+        return $this->hasMany(City::class);
+    }
 }
 
