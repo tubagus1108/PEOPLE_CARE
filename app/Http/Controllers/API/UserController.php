@@ -42,6 +42,7 @@ class UserController extends Controller
         }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $input['date_birth'] = '19-11-1999';
         $user = PeopleMembers::create($input);
         $data['token'] =  $user->createToken('nApp')->accessToken;
         $data['name'] =  $user->name;
