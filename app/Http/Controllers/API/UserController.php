@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -42,7 +43,7 @@ class UserController extends Controller
         }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $input['date_birth'] = '11-19-1999';
+        $input['date_birth'] = Carbon::now();
         $user = PeopleMembers::create($input);
         $data['token'] =  $user->createToken('nApp')->accessToken;
         $data['name'] =  $user->name;
